@@ -4,37 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PowerTrims - Minecraft Spigot Plugin</title>
-    <meta name="description" content="Unleash the power of armor trims with PowerTrims, the ultimate Minecraft plugin that turns cosmetic trims into powerful, unique abilities.">
+    <meta name="description" content="Give armor trims real power with this Minecraft plugin that turns cosmetic trims into powerful, unique abilities.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- "ANCIENT TOME" THEME INSPIRED BY PROJECT KORRA --- */
+        /* --- "ANCIENT TOME" THEME --- */
         :root {
-            --background-color: #F5F1E9; /* Aged Paper */
-            --container-bg: #EAE5D9; /* Lighter Paper */
-            --primary-color: #D4AF37; /* Gold Accent */
-            --link-color: #0047AB; /* Lapis Blue for links */
-            --text-color: #3D2B1F; /* Deep Brown */
-            --border-color: #C8B59A; /* Faded Gold Border */
-            --shadow-color: rgba(61, 43, 31, 0.15);
-            --font-header: 'Cinzel', serif;
-            --font-body: 'Lora', serif;
+            --background-color: #F5F1E9; --container-bg: #EAE5D9; --primary-color: #D4AF37;
+            --link-color: #0047AB; --text-color: #3D2B1F; --border-color: #C8B59A;
+            --shadow-color: rgba(61, 43, 31, 0.15); --font-header: 'Cinzel', serif; --font-body: 'Lora', serif;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-body);
-            background-color: var(--background-color);
+            font-family: var(--font-body); background-color: var(--background-color);
             background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill="%23EAE5D9" fill-opacity="0.4"><rect x="50" width="50" height="50"/><rect y="50" width="50" height="50"/></g></svg>');
-            color: var(--text-color);
-            margin: 0;
-            padding-top: 70px;
-            line-height: 1.7;
+            color: var(--text-color); margin: 0; padding-top: 70px; line-height: 1.7;
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -46,98 +36,43 @@
         a { color: var(--link-color); text-decoration: none; transition: color 0.2s; }
         a:hover { text-decoration: underline; }
 
-        /* --- NAVIGATION BAR --- */
         .navbar {
-            background: transparent;
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 15px 0;
-            z-index: 1000;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            background: transparent; position: fixed; top: 0; left: 0; width: 100%;
+            padding: 15px 0; z-index: 1000; transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .navbar.scrolled {
-            background-color: rgba(245, 241, 233, 0.9);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 2px 10px var(--shadow-color);
+            background-color: rgba(245, 241, 233, 0.9); backdrop-filter: blur(5px); box-shadow: 0 2px 10px var(--shadow-color);
         }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; }
         .nav-logo { font-family: var(--font-header); font-size: 1.8rem; color: var(--text-color); }
-        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; gap: 25px; }
         .nav-links a { font-weight: 600; font-family: var(--font-body); }
         .nav-links a:hover { color: var(--primary-color); text-decoration: none; }
 
-        /* --- HERO SECTION --- */
         .hero { text-align: center; padding: 100px 0; }
         .hero h1 { font-size: 4rem; color: var(--primary-color); }
         .hero .subtitle { font-size: 1.25rem; max-width: 700px; margin: 0 auto 40px; }
         .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            font-family: var(--font-header);
-            text-decoration: none;
-            color: var(--text-color);
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            border-radius: 4px;
-            transition: all 0.2s ease-in-out;
-            font-size: 1rem;
-            font-weight: 700;
+            display: inline-block; padding: 15px 35px; font-family: var(--font-header);
+            text-decoration: none; color: var(--text-color); background-color: transparent;
+            border: 2px solid var(--primary-color); border-radius: 4px;
+            transition: all 0.2s ease-in-out; font-size: 1rem; font-weight: 700;
         }
         .btn:hover { background-color: var(--primary-color); color: white; }
 
-        /* --- FEATURES & ABILITIES CARDS --- */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .card {
-            background-color: var(--container-bg);
-            padding: 30px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px var(--shadow-color);
-            border-radius: 4px;
+            background-color: var(--container-bg); padding: 30px; border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px var(--shadow-color); border-radius: 4px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px var(--shadow-color); }
-        .card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            height: 40px;
-            width: 40px;
+        
+        pre {
+            background-color: #282c34; color: #abb2bf; padding: 20px; border-radius: 8px;
+            border: 1px solid var(--border-color); font-family: monospace; white-space: pre-wrap; word-wrap: break-word;
         }
-
-        /* --- ABILITIES SHOWCASE --- */
-        .ability-filters { text-align: center; margin-bottom: 40px; }
-        .filter-btn {
-            font-family: var(--font-header);
-            font-size: 1rem;
-            padding: 10px 20px;
-            cursor: pointer;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            margin: 0 5px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-        .filter-btn:hover { border-color: var(--primary-color); }
-        .filter-btn.active { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
-
-        /* --- DOCUMENTATION --- */
-        code {
-            background-color: var(--container-bg);
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-family: monospace;
-            border: 1px solid var(--border-color);
-            color: #B22222; /* Firebrick color for code */
-        }
-        .doc-section { margin-bottom: 40px; }
-
-        /* --- FOOTER --- */
-        .footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); }
+        code { background-color: var(--container-bg); padding: 3px 6px; border-radius: 4px; font-family: monospace; border: 1px solid var(--border-color); }
         
         @media (max-width: 768px) {
             body { padding-top: 0; }
@@ -155,8 +90,9 @@
             <a href="#home" class="nav-logo">PowerTrims</a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
-                <li><a href="#abilities">Abilities</a></li>
-                <li><a href="#docs">Documentation</a></li>
+                <li><a href="#all-abilities">Abilities</a></li>
+                <li><a href="#configuration">Configuration</a></li>
+                <li><a href="#docs">Commands</a></li>
                 <li><a href="#download">Download</a></li>
             </ul>
         </div>
@@ -165,84 +101,107 @@
     <main>
         <section id="home" class="hero">
             <div class="container">
-                <h1>Forge Your Legend</h1>
-                <p class="subtitle">An ancient power awakens. PowerTrims breathes life into armor trims, transforming them from mere decoration into legendary artifacts, each bestowing a unique and formidable ability.</p>
+                <h1>Give Armor Trims Real Power</h1>
+                <p class="subtitle">PowerTrims is a simple but powerful plugin that turns cosmetic armor trims into useful abilities, adding a new level of strategy to your server.</p>
                 <a href="#download" class="btn">Download the Plugin</a>
             </div>
         </section>
 
-        <section id="features">
+        <section id="features" style="background: var(--container-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
             <div class="container">
-                <h2>The Enchanter's Arsenal</h2>
+                <h2>Why Use PowerTrims?</h2>
                 <div class="card-grid">
                     <div class="card">
-                        <h3>Legendary Abilities</h3>
-                        <p>Discover a trove of over 15 unique abilities tied to armor trims. Command the battlefield with powers of offense, defense, and cunning utility.</p>
+                        <h3>New Gameplay Abilities</h3>
+                        <p>Give your players over 17 new abilities to use, based on the armor trims they find and equip. There's a power for every style of play.</p>
                     </div>
                     <div class="card">
-                        <h3>Masterful Customization</h3>
-                        <p>As the architect of your world, you hold the power. Fine-tune every ability through our extensive configuration or the intuitive web panel.</p>
+                        <h3>Fully Customizable</h3>
+                        <p>You have full control. Change ability cooldowns, damage, and effects in the config file, or use the easy web panel to manage everything.</p>
                     </div>
                     <div class="card">
-                        <h3>The Pact of Trust</h3>
-                        <p>Forge alliances with the <code>/trust</code> command. This sacred pact ensures your immense power will never harm your trusted comrades in the heat of battle.</p>
+                        <h3>Team-Friendly</h3>
+                        <p>The built-in <code>/trust</code> system lets players team up without worrying about hitting their friends with powerful area-of-effect abilities.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="abilities">
+        <section id="all-abilities">
             <div class="container">
-                <h2>A Tome of Power</h2>
-                <div class="ability-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="offense">Offense</button>
-                    <button class="filter-btn" data-filter="defense">Defense</button>
-                    <button class="filter-btn" data-filter="utility">Utility</button>
+                <h2>All Trim Abilities</h2>
+                <div class="card-grid">
+                    <div class="card"><h3>Sentry</h3><p>Fires a burst of arrows that deal damage which partially ignores armor.</p></div>
+                    <div class="card"><h3>Silence</h3><p>Creates an area where enemies cannot use Ender Pearls or their own trim abilities.</p></div>
+                    <div class="card"><h3>Vex</h3><p>Unleashes a sonic boom that damages and weakens nearby enemies.</p></div>
+                    <div class="card"><h3>Ward</h3><p>Grants the user temporary Absorption and Resistance effects for defense.</p></div>
+                    <div class="card"><h3>Wild</h3><p>Launches a grapple hook to move quickly or pull targets.</p></div>
+                    <div class="card"><h3>Coast</h3><p>Pulls in nearby enemies with a watery grasp, slowing them down.</p></div>
+                    <div class="card"><h3>Dune</h3><p>Summons a blinding sandstorm that damages enemies over time.</p></div>
+                    <div class="card"><h3>Eye</h3><p>Grants you "True Sight", allowing you to see invisible players and mobs through walls.</p></div>
+                    <div class="card"><h3>Host</h3><p>Steals health and positive potion effects from a nearby enemy.</p></div>
+                    <div class="card"><h3>Raiser</h3><p>Pulls entities from the ground into the air, setting them up for an attack.</p></div>
+                    <div class="card"><h3>Rib</h3><p>Summons a friendly Skeleton minion that fights for you for a short time.</p></div>
+                    <div class="card"><h3>Snout</h3><p>Summons a friendly Zombified Piglin minion to aid you in combat.</p></div>
+                    <div class="card"><h3>Spire</h3><p>Perform a quick dash forward that knocks back and slows enemies you hit.</p></div>
+                    <div class="card"><h3>Tide</h3><p>Summons a powerful wave of water that pushes enemies away.</p></div>
+                    <div class="card"><h3>Wayfinder</h3><p>Temporarily increases your movement speed and jump height.</p></div>
+                    <div class="card"><h3>Flow</h3><p>Sacrifice health over time to gain powerful Speed and Strength effects.</p></div>
+                    <div class="card"><h3>Bolt</h3><p>Calls down a lightning strike that chains to multiple nearby enemies.</p></div>
                 </div>
+            </div>
+        </section>
 
-                <div class="card-grid abilities-grid">
-                    <div class="card ability-card" data-category="offense">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M21.71,6.29,17.71,2.29a1,1,0,0,0-1.42,0L15,3.59,7.71,10.88a1,1,0,0,0,0,1.41L9,13.59,2,20.59V22H3.41l7-7,1.29,1.29a1,1,0,0,0,1.41,0L19.41,9,21,7.71a1,1,0,0,0,0-1.42ZM5.83,20,13,12.83,15.17,15,8,22H4V20.17Z"/></svg>
-                        <h3>Sentry Trim</h3>
-                        <p>Loose a volley of spectral arrows that pierce armor, striking your foe's very essence with true damage.</p>
+        <section id="configuration" style="background: var(--container-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <h2>Configuration Guide</h2>
+                <p>You can configure PowerTrims in two easy ways. Choose what works best for you!</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>1. The `config.yml` File</h3>
+                        <p>For direct control, you can edit the configuration file located at <code>/plugins/PowerTrims/config.yml</code>.</p>
+                        <p>The file is structured simply. For example, to change the Sentry trim:</p>
+                        <pre><code>trim-abilities:
+  sentry:
+    primary:
+      arrow_count: 3
+      spread: 0.15
+      cooldown_ticks: 90000
+      true_damage: 0.5</code></pre>
+                        <p>Just change the values, save the file, and run <code>/powertrims reload</code>.</p>
                     </div>
-                    <div class="card ability-card" data-category="defense">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12,1L3,5v6c0,5.55,3.84,10.74,9,12,5.16-1.26,9-6.45,9-12V5Zm0,10.99h7c-.53,4.12-3.28,7.79-7,8.94V12H5V6.3l7-3.11Z"/></svg>
-                        <h3>Ward Trim</h3>
-                        <p>Summon a bastion of light, granting you a temporary shield of absorption and supernatural resistance to harm.</p>
+                    <div class="card">
+                        <h3>2. The Web Panel</h3>
+                        <p>For a more user-friendly experience, you can use the built-in web panel.</p>
+                        <ol>
+                            <li>Run <code>/powertrims panel</code> in-game or in the console.</li>
+                            <li>You will get a URL and a one-time access key.</li>
+                            <li>Open the URL in your browser and use the key to log in.</li>
+                            <li>You can now edit all settings from a clean web interface and save your changes.</li>
+                        </ol>
                     </div>
-                    <div class="card ability-card" data-category="utility">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M10.59,13.41C10.21,13.79 10,14.3 10,14.83V21H12V14.83C12,14.3 11.79,13.79 11.41,13.41L6,8V3H16V8L10.59,13.41Z"/></svg>
-                        <h3>Wild Trim</h3>
-                        <p>Master the battlefield by launching a vine-like grapple to reposition or ensnare foes. When near defeat, the earth itself rises to root your attackers.</p>
-                    </div>
-                    </div>
+                </div>
             </div>
         </section>
 
         <section id="docs">
             <div class="container">
-                <h2>The Scribe's Guide</h2>
-                <div class="doc-section">
-                    <h3>Installation</h3>
-                    <p>Place the downloaded <code>PowerTrims.jar</code> into your server's <code>/plugins</code> directory and restart the server. The tome of configuration will be created for you.</p>
-                </div>
-                <div class="doc-section">
-                    <h3>Commands & Permissions</h3>
-                    <ul>
-                        <li><code>/powertrims panel</code> <em>(powertrims.panel)</em> - Reveals the URL and secret key to the web panel.</li>
-                        <li><code>/powertrims reload</code> <em>(powertrims.reload)</em> - Re-reads the ancient configuration scrolls.</li>
-                        <li><code>/powertrims trust &lt;player&gt;</code> <em>(powertrims.trust)</em> - Form a pact with another player.</li>
-                    </ul>
-                </div>
+                <h2>Commands and Permissions</h2>
+                <p>All commands start with <code>/powertrims</code>. Here are the main sub-commands:</p>
+                <ul>
+                    <li><code>panel</code> - Get the link and access key for the web panel. (Permission: <code>powertrims.panel</code>)</li>
+                    <li><code>reload</code> - Reloads the plugin configuration. (Permission: <code>powertrims.reload</code>)</li>
+                    <li><code>trust &lt;player&gt;</code> - Allow a player to not be affected by your abilities. (Permission: <code>powertrims.trust</code>)</li>
+                    <li><code>untrust &lt;player&gt;</code> - Remove a player from your trusted list. (Permission: <code>powertrims.trust</code>)</li>
+                    <li><code>trustlist</code> - See all players you currently trust. (Permission: <code>powertrims.trust</code>)</li>
+                </ul>
             </div>
         </section>
 
-        <section id="download" style="background: var(--container-bg); border-top: 1px solid var(--border-color);">
+        <section id="download">
             <div class="container" style="text-align: center;">
-                <h2>Claim Your Power</h2>
-                <p style="max-width: 600px; margin: 0 auto 40px;">Begin your legend. Download the latest version of PowerTrims and bestow true power upon your server.</p>
+                <h2>Get PowerTrims</h2>
+                <p style="max-width: 600px; margin: 0 auto 40px;">Ready to add new abilities to your server? Download the latest version of the plugin.</p>
                 <a href="#" class="btn" style="margin: 10px;">Download from SpigotMC</a>
                 <a href="#" class="btn" style="margin: 10px;">View Source on GitHub</a>
             </div>
@@ -250,31 +209,14 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 PowerTrims. Forged for the Minecraft Community.</p>
-        </div>
+        <div class="container"><p>&copy; 2025 PowerTrims. Made for the Minecraft Community.</p></div>
     </footer>
 
     <script>
-        // --- NAVBAR SCROLL EFFECT ---
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) navbar.classList.add('scrolled');
             else navbar.classList.remove('scrolled');
-        });
-
-        // --- ABILITY FILTERING LOGIC ---
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const abilityCards = document.querySelectorAll('.ability-card');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                const filter = button.getAttribute('data-filter');
-                abilityCards.forEach(card => {
-                    card.style.display = (filter === 'all' || filter === card.getAttribute('data-category')) ? 'block' : 'none';
-                });
-            });
         });
     </script>
 </body>
