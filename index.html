@@ -32,12 +32,14 @@
         h1, h2, h3 { font-family: var(--font-header); font-weight: 700; color: var(--text-color); margin-top: 0; }
         h2 { font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
         h3 { font-size: 1.5rem; color: var(--primary-color); }
+        h4 { font-family: var(--font-header); font-size: 1.2rem; }
         p.section-subtitle { text-align: center; max-width: 700px; margin: 0 auto 60px auto; font-size: 1.1rem; }
         a { color: var(--link-color); text-decoration: none; transition: color 0.2s; }
         a:hover { text-decoration: underline; }
 
         .navbar {
-            background-color: rgba(245, 241, 233, 0.85); backdrop-filter: blur(8px);
+            background-color: var(--container-bg);
+            border-bottom: 1px solid var(--border-color);
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 15px 0; z-index: 1000; box-shadow: 0 2px 10px var(--shadow-color);
         }
@@ -60,41 +62,49 @@
         .btn.primary { background-color: var(--primary-color); color: white; }
         .btn.primary:hover { background-color: transparent; color: var(--text-color); }
 
-
         .alt-bg { background: var(--container-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
         
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
         
         .card {
-            background-color: rgba(245, 241, 233, 0.4); 
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            background-image: 
-                linear-gradient(to top right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            background-blend-mode: overlay;
-            background-size: cover;
-
+            background-color: var(--background-color);
             padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 20px var(--shadow-color);
-            border-radius: 12px;
-            height: 100%;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border-radius: 8px;
             text-align: center;
-            
+            flex-basis: 250px;
+            flex-grow: 1;
+            max-width: 350px;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
-        a.card-link { text-decoration: none; color: inherit; display: block; }
+
+        a.card-link { text-decoration: none; color: inherit; display: flex; }
         
         a.card-link .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(61, 43, 31, 0.15), 0 0 20px rgba(193, 154, 48, 0.5);
         }
 
-        pre { background-color: #282c34; color: #abb2bf; padding: 20px; border-radius: 8px; border: 1px solid var(--border-color); font-family: monospace; white-space: pre-wrap; word-wrap: break-word; }
+        /* === PRE STYLE UPDATED === */
+        pre { 
+            background-color: var(--container-bg); 
+            color: var(--text-color); 
+            padding: 20px; 
+            border-radius: 8px; 
+            border: 1px solid var(--border-color); 
+            font-family: monospace; 
+            white-space: pre-wrap; 
+            word-wrap: break-word; 
+        }
         code { background-color: var(--container-bg); padding: 3px 6px; border-radius: 4px; font-family: monospace; border: 1px solid var(--border-color); }
         
-        .wiki-content, .ritual-content { max-width: 800px; margin: 0 auto; }
+        .wiki-content, .ritual-content, .config-content { max-width: 800px; margin: 0 auto; }
         .wiki-stats {
             margin-top: 30px;
             border-collapse: collapse;
@@ -146,7 +156,6 @@
     </header>
 
     <main>
-        <!-- ======== HOME PAGE ======== -->
         <section id="page-home" class="page active">
             <div class="hero">
                 <div class="container">
@@ -184,7 +193,6 @@
             </div>
         </section>
 
-        <!-- ======== ABILITIES PAGE ======== -->
         <section id="page-abilities" class="page">
             <div class="container">
                 <h2>All Trim Abilities</h2>
@@ -212,7 +220,6 @@
             </div>
         </section>
         
-        <!-- ======== RITUALS PAGE ======== -->
         <section id="page-rituals" class="page ritual-content">
             <div class="container">
                 <h2>How to Get Ultimate Abilities</h2>
@@ -239,73 +246,93 @@
             </div>
         </section>
 
-        <!-- ======== WIKI PAGES FOR EACH TRIM (HIDDEN) ======== -->
         <div id="wiki-pages">
-            <section id="page-trim-sentry" class="page wiki-content"><div class="container"><h2>Sentry Trim</h2><p>Unleashes a volley of armor-piercing arrows.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>75 Seconds</td></tr><tr><td>Arrow Count</td><td>3</td></tr><tr><td>True Damage</td><td>0.5 per arrow</td></tr></table><h3>Best Used For...</h3><p>Starting a fight with guaranteed damage, especially against heavily armored foes. It's most effective at medium range where all arrows can hit the same target.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-silence" class="page wiki-content"><div class="container"><h2>Silence Trim</h2><p>Creates a zone where foes cannot use certain abilities.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>75 Seconds</td></tr><tr><td>Radius</td><td>15 Blocks</td></tr><tr><td>Duration</td><td>20 Seconds</td></tr></table><h3>Best Used For...</h3><p>Controlling PvP encounters. Trap players who rely on Ender Pearls or shut down other PowerTrim users in a large team fight. It's a strategic game-changer.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-vex" class="page wiki-content"><div class="container"><h2>Vex Trim</h2><p>Emits a sonic boom, damaging and weakening nearby enemies.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Radius</td><td>30 Blocks</td></tr><tr><td>Damage</td><td>8.0 (4 Hearts)</td></tr></table><h3>Best Used For...</h3><p>Massive area-of-effect damage. Use it to clear large groups of monsters or to turn the tide in a major battle when surrounded.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-ward" class="page wiki-content"><div class="container"><h2>Ward Trim</h2><p>Summons a divine shield for protection.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Absorption Level</td><td>4 (8 extra hearts)</td></tr><tr><td>Resistance Level</td><td>2</td></tr></table><h3>Best Used For...</h3><p>Surviving lethal damage. Activate it right before a big hit (like a Creeper explosion or a powerful player attack) to stay in the fight.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-wild" class="page wiki-content"><div class="container"><h2>Wild Trim</h2><p>Launches a grapple hook for mobility and control.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>16.6 Seconds</td></tr><tr><td>Grapple Range</td><td>60 Blocks</td></tr></table><h3>Best Used For...</h3><p>Repositioning. Use it to escape danger, get to high ground, or pull a specific enemy out of formation and into your team's grasp.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-coast" class="page wiki-content"><div class="container"><h2>Coast Trim</h2><p>Creates a watery vortex to pull and slow enemies.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>50 Seconds</td></tr><tr><td>Radius</td><td>30 Blocks</td></tr><tr><td>Damage</td><td>10.0 (5 Hearts)</td></tr></table><h3>Best Used For...</h3><p>Crowd control. Gather up a group of scattered enemies, making them easy targets for follow-up attacks from you or your teammates.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-dune" class="page wiki-content"><div class="container"><h2>Dune Trim</h2><p>Summons a damaging and blinding sandstorm.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>50 Seconds</td></tr><tr><td>Radius</td><td>12 Blocks</td></tr><tr><td>Damage</td><td>10.0 (5 Hearts)</td></tr></table><h3>Best Used For...</h3><p>Area denial. Block off a path, obscure vision, or damage enemies who are hiding behind cover. It's great for controlling key points on the map.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-eye" class="page wiki-content"><div class="container"><h2>Eye Trim</h2><p>Grants True Sight, revealing entities through walls.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Radius</td><td>80 Blocks</td></tr><tr><td>Duration</td><td>30 Seconds</td></tr></table><h3>Best Used For...</h3><p>Intelligence and anti-stealth. Activate it when you suspect an invisible player is nearby or to find enemies hiding in a base.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-sentry" class="page wiki-content"><div class="container"><h2>Sentry Trim</h2><p>Unleashes a volley of armor-piercing arrows.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>75 Seconds</td></tr><tr><td>Arrow Count</td><td>3</td></tr><tr><td>True Damage</td><td>0.5 per arrow</td></tr><tr><td>Passive Effect(s)</td><td>Resistance I</td></tr></table><h3>Best Used For...</h3><p>Starting a fight with guaranteed damage, especially against heavily armored foes. It's most effective at medium range where all arrows can hit the same target.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-silence" class="page wiki-content"><div class="container"><h2>Silence Trim</h2><p>Creates a zone where foes cannot use certain abilities.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>75 Seconds</td></tr><tr><td>Radius</td><td>15 Blocks</td></tr><tr><td>Duration</td><td>20 Seconds</td></tr><tr><td>Passive Effect(s)</td><td>Strength II</td></tr></table><h3>Best Used For...</h3><p>Controlling PvP encounters. Trap players who rely on Ender Pearls or shut down other PowerTrim users in a large team fight. It's a strategic game-changer.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-vex" class="page wiki-content"><div class="container"><h2>Vex Trim</h2><p>Emits a sonic boom, damaging and weakening nearby enemies.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Radius</td><td>30 Blocks</td></tr><tr><td>Damage</td><td>8.0 (4 Hearts)</td></tr><tr><td>Passive Effect(s)</td><td>Speed II</td></tr></table><h3>Best Used For...</h3><p>Massive area-of-effect damage. Use it to clear large groups of monsters or to turn the tide in a major battle when surrounded.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-ward" class="page wiki-content"><div class="container"><h2>Ward Trim</h2><p>Summons a divine shield for protection.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Absorption Level</td><td>4 (8 extra hearts)</td></tr><tr><td>Resistance Level</td><td>2</td></tr><tr><td>Passive Effect(s)</td><td>Resistance I</td></tr></table><h3>Best Used For...</h3><p>Surviving lethal damage. Activate it right before a big hit (like a Creeper explosion or a powerful player attack) to stay in the fight.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-wild" class="page wiki-content"><div class="container"><h2>Wild Trim</h2><p>Launches a grapple hook for mobility and control.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>16.6 Seconds</td></tr><tr><td>Grapple Range</td><td>60 Blocks</td></tr><tr><td>Passive Effect(s)</td><td>Regeneration I</td></tr></table><h3>Best Used For...</h3><p>Repositioning. Use it to escape danger, get to high ground, or pull a specific enemy out of formation and into your team's grasp.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-coast" class="page wiki-content"><div class="container"><h2>Coast Trim</h2><p>Creates a watery vortex to pull and slow enemies.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>50 Seconds</td></tr><tr><td>Radius</td><td>30 Blocks</td></tr><tr><td>Damage</td><td>10.0 (5 Hearts)</td></tr><tr><td>Passive Effect(s)</td><td>Dolphin's Grace I</td></tr></table><h3>Best Used For...</h3><p>Crowd control. Gather up a group of scattered enemies, making them easy targets for follow-up attacks from you or your teammates.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-dune" class="page wiki-content"><div class="container"><h2>Dune Trim</h2><p>Summons a swirling sandstorm that pulls, lifts, and damages enemies inside.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>30 Seconds</td></tr><tr><td>Radius</td><td>12 Blocks</td></tr><tr><td>Damage per Second</td><td>2.0 (1 Heart)</td></tr><tr><td>Passive Effect(s)</td><td>Haste I, Fire Resistance I</td></tr></table><h3>Best Used For...</h3><p>Area denial. Block off a path, obscure vision, or damage enemies who are hiding behind cover. The pull and lift effect makes it hard for enemies to escape.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-eye" class="page wiki-content"><div class="container"><h2>Eye Trim</h2><p>Grants True Sight, revealing entities through walls.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Radius</td><td>80 Blocks</td></tr><tr><td>Duration</td><td>30 Seconds</td></tr><tr><td>Passive Effect(s)</td><td>Night Vision I</td></tr></table><h3>Best Used For...</h3><p>Intelligence and anti-stealth. Activate it when you suspect an invisible player is nearby or to find enemies hiding in a base.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
             <section id="page-trim-host" class="page wiki-content"><div class="container"><h2>Host Trim</h2><p>Siphons health and beneficial effects from a target.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Health Steal</td><td>4.0 (2 Hearts)</td></tr><tr><td>Radius</td><td>10 Blocks</td></tr></table><h3>Best Used For...</h3><p>Dueling. The perfect counter to an enemy who has just used a Golden Apple or a powerful potion. Steal their advantage and make it your own.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
             <section id="page-trim-raiser" class="page wiki-content"><div class="container"><h2>Raiser Trim</h2><p>Lifts nearby enemies helplessly into the air.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Radius</td><td>15 Blocks</td></tr></table><h3>Best Used For...</h3><p>Setting up combos. Pop your enemies into the air, leaving them vulnerable and unable to move for a few crucial seconds.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-rib" class="page wiki-content"><div class="container"><h2>Rib Trim</h2><p>Summons a loyal Skeleton archer to fight for you.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>50 Seconds</td></tr><tr><td>Minion Lifespan</td><td>60 Seconds</td></tr></table><h3>Best Used For...</h3><p>Creating a distraction. The skeleton can draw enemy fire or deal consistent damage from a distance while you focus on other targets.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-snout" class="page wiki-content"><div class="container"><h2>Snout Trim</h2><p>Calls upon a powerful Zombified Piglin to defend you.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Minion Lifespan</td><td>90 Seconds</td></tr></table><h3>Best Used For...</h3><p>A personal bodyguard. The Zombified Piglin is a strong melee combatant that can protect you or help you push an objective.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-spire" class="page wiki-content"><div class="container"><h2>Spire Trim</h2><p>Dash through enemies, leaving them vulnerable.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>25 Seconds</td></tr><tr><td>Dash Distance</td><td>8 Blocks</td></tr><tr><td>Damage Amp</td><td>+60% damage taken</td></tr></table><h3>Best Used For...</h3><p>Aggressive plays. Dash in to make a high-priority target vulnerable, then let your team focus fire to take them down quickly.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-tide" class="page wiki-content"><div class="container"><h2>Tide Trim</h2><p>Create a massive wave of water to push back enemies.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Knockback</td><td>Very High</td></tr></table><h3>Best Used For...</h3><p>Creating space. Use it to knock players off cliffs or ledges, or simply to push back an overwhelming force to give your team room to breathe.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-rib" class="page wiki-content"><div class="container"><h2>Rib Trim</h2><p>Summons a loyal Skeleton archer to fight for you.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>50 Seconds</td></tr><tr><td>Minion Lifespan</td><td>60 Seconds</td></tr><tr><td>Passive Effect(s)</td><td>Resistance I</td></tr></table><h3>Best Used For...</h3><p>Creating a distraction. The skeleton can draw enemy fire or deal consistent damage from a distance while you focus on other targets.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-snout" class="page wiki-content"><div class="container"><h2>Snout Trim</h2><p>Calls upon a powerful Zombified Piglin to defend you.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Minion Lifespan</td><td>90 Seconds</td></tr><tr><td>Passive Effect(s)</td><td>Strength I</td></tr></table><h3>Best Used For...</h3><p>A personal bodyguard. The Zombified Piglin is a strong melee combatant that can protect you or help you push an objective.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-spire" class="page wiki-content"><div class="container"><h2>Spire Trim</h2><p>Dash through enemies, leaving them vulnerable.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>25 Seconds</td></tr><tr><td>Dash Distance</td><td>8 Blocks</td></tr><tr><td>Damage Amp</td><td>+60% damage taken</td></tr><tr><td>Passive Effect(s)</td><td>Speed II</td></tr></table><h3>Best Used For...</h3><p>Aggressive plays. Dash in to make a high-priority target vulnerable, then let your team focus fire to take them down quickly.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-tide" class="page wiki-content"><div class="container"><h2>Tide Trim</h2><p>Create a massive wave of water to push back enemies.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr><tr><td>Knockback</td><td>Very High</td></tr><tr><td>Passive Effect(s)</td><td>Dolphin's Grace III</td></tr></table><h3>Best Used For...</h3><p>Creating space. Use it to knock players off cliffs or ledges, or simply to push back an overwhelming force to give your team room to breathe.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
             <section id="page-trim-wayfinder" class="page wiki-content"><div class="container"><h2>Wayfinder Trim</h2><p>Briefly gain a burst of speed and an enhanced jump.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>100 Seconds</td></tr></table><h3>Best Used For...</h3><p>Mobility. A simple but effective tool for escaping danger, chasing a fleeing target, or quickly navigating difficult terrain.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-flow" class="page wiki-content"><div class="container"><h2>Flow Trim</h2><p>Sacrifice life force for a massive boost in power.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>50 Seconds</td></tr><tr><td>Health Cost</td><td>1 Heart per second</td></tr></table><h3>Best Used For...</h3><p>High-risk, high-reward pushes. Activate it for a short burst of incredible speed and strength to finish a fight, but be ready to retreat before the health cost becomes too great.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-bolt" class="page wiki-content"><div class="container"><h2>Bolt Trim</h2><p>Call down a lightning strike that chains between targets.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>16.6 Seconds</td></tr><tr><td>Max Chains</td><td>3 Targets</td></tr></table><h3>Best Used For...</h3><p>Punishing grouped-up enemies. The chain lightning is devastating when enemies are close together, making it a powerful tool in team fights.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-flow" class="page wiki-content"><div class="container"><h2>Flow Trim</h2><p>Sacrifice life force for a massive boost in power.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>50 Seconds</td></tr><tr><td>Health Cost</td><td>1 Heart per second</td></tr><tr><td>Passive Effect(s)</td><td>Speed II</td></tr></table><h3>Best Used For...</h3><p>High-risk, high-reward pushes. Activate it for a short burst of incredible speed and strength to finish a fight, but be ready to retreat before the health cost becomes too great.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-bolt" class="page wiki-content"><div class="container"><h2>Bolt Trim</h2><p>Call down a lightning strike that chains between targets.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>16.6 Seconds</td></tr><tr><td>Max Chains</td><td>3 Targets</td></tr><tr><td>Passive Effect(s)</td><td>Speed III</td></tr></table><h3>Best Used For...</h3><p>Punishing grouped-up enemies. The chain lightning is devastating when enemies are close together, making it a powerful tool in team fights.</p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
         </div>
         
-        <!-- ======== COMMUNITY/SOCIALS PAGE ======== -->
         <section id="page-community" class="page alt-bg">
             <div class="container" style="text-align: center;">
                <h2>Join the Community</h2>
                <p class="section-subtitle">Have questions, need support, or want to share ideas? Join our community!</p>
                <div class="social-links">
                    <a href="https://discord.gg/2uU3Rsw3" class="btn primary" style="margin: 10px;" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-                   <a href="https://github.com/divi912/POWER-TRIMS" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">View Source on GitHub</a>
+                   <a href="https://github.com/divi922/POWER-TRIMS" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">View Source on GitHub</a>
                </div>
            </div>
        </section>
 
-        <!-- ======== DOWNLOAD PAGE ======== -->
         <section id="page-download" class="page">
              <div class="container" style="text-align: center;">
-                <h2>Get PowerTrims</h2>
-                <p class="section-subtitle">Ready to add new abilities to your server? Download the latest version of the plugin.</p>
-                <a href="https://modrinth.com/plugin/power-trimss" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">Download on Modrinth</a>
-                <a href="https://github.com/divi912/POWER-TRIMS/releases" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">Releases on GitHub</a>
-            </div>
+                 <h2>Get PowerTrims</h2>
+                 <p class="section-subtitle">Ready to add new abilities to your server? Download the latest version of the plugin.</p>
+                 <a href="https://modrinth.com/plugin/power-trimss" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">Download on Modrinth</a>
+                 <a href="https://github.com/divi922/POWER-TRIMS/releases" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">Releases on GitHub</a>
+             </div>
         </section>
 
-        <!-- ======== CONFIGURATION PAGE ======== -->
-        <section id="page-config" class="page">
+        <section id="page-config" class="page config-content">
              <div class="container">
                 <h2>Configuration Guide</h2>
-                <p class="section-subtitle">Learn how to customize every aspect of the PowerTrims plugin.</p>
-                <div class="card">
-                    <h3>Using the `config.yml` File</h3>
-                    <p>For direct control, edit the file at <code>/plugins/PowerTrims/config.yml</code>. This is the only way to configure the plugin.</p>
-                    <h4>File Structure</h4>
-                    <ul>
-                        <li><b>global:</b> Settings that affect the whole plugin.</li>
-                        <li><b>trims:</b> A list to turn each trim ability on or off server-wide.</li>
-                        <li><b>trim-abilities:</b> The main section where you can change the stats for every ability.</li>
-                    </ul>
-                    <pre><code># Example:
-trim-abilities:
-  sentry:
-    primary:
-      arrow_count: 3
-      cooldown_ticks: 90000</code></pre>
-                    <p>After saving your changes, run <code>/powertrims reload</code> in the console for them to take effect.</p>
+                <p class="section-subtitle">Learn how to customize every aspect of the PowerTrims plugin using the <code>config.yml</code> file.</p>
+                
+                <div class="card-grid">
+                    <div class="card" style="text-align: left; max-width: 100%;">
+                        <h4>Global Settings</h4>
+                        <p>This option affects the entire plugin.</p>
+                        <pre><code>cooldown-display: ACTION_BAR 
+# Options: SCOREBOARD, ACTION_BAR, NONE.</code></pre>
+                    </div>
+                    <div class="card" style="text-align: left; max-width: 100%;">
+                        <h4>Trim Toggles</h4>
+                        <p>Enable or disable specific trim abilities server-wide.</p>
+                        <pre><code>trims:
+  sentry: true
+  silence: false # Disabled
+  vex: true</code></pre>
+                    </div>
+                    <div class="card" style="text-align: left; max-width: 100%;">
+                         <h4>Passive Effects</h4>
+                         <p>Grant permanent potion effects to players wearing a trim.</p>
+                         <pre><code>passive_effects:
+  dune:
+    - HASTE:0
+    - FIRE_RESISTANCE:0
+  ward:
+    - RESISTANCE:0</code></pre>
+                    </div>
                 </div>
+
+                <div class="card" style="text-align: left; margin-top: 30px; max-width: 100%;">
+                     <h4>Ability Settings</h4>
+                     <p>Change the specific stats for each ability, like damage, radius, and cooldown. All time values are in "ticks" (20 ticks = 1 second).</p>
+                     <pre><code># Example for Sentry trim:
+sentry:
+  primary:
+    arrow_count: 3
+    spread: 0.15
+    cooldown: 90000
+    true_damage: 0.5</code></pre>
+                    <p>After saving changes, run <code>/powertrims reload</code> in the console for them to take effect. Some changes may require a server restart.</p>
+                </div>
+
                 <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a></div>
-            </div>
+             </div>
         </section>
     </main>
 
@@ -364,5 +391,3 @@ trim-abilities:
     </script>
 </body>
 </html>
-
-
