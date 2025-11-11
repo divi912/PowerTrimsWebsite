@@ -122,8 +122,8 @@
             color: var(--primary-color); 
         }
         
-        .wiki-content, .ritual-content, .config-content { max-width: 800px; margin: 0 auto; }
-        .wiki-stats {
+        .wiki-content, .ritual-content, .config-content, .general-info-content { max-width: 800px; margin: 0 auto; }
+        .wiki-stats, .commands-table {
             margin-top: 30px;
             border-collapse: collapse;
             width: 100%;
@@ -131,13 +131,13 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
-        .wiki-stats th, .wiki-stats td {
+        .wiki-stats th, .wiki-stats td, .commands-table th, .commands-table td {
             text-align: left;
             padding: 15px;
             border-bottom: 1px solid var(--border-color);
             color: var(--text-color);
         }
-        .wiki-stats th { background-color: transparent; color: var(--primary-color); }
+        .wiki-stats th, .commands-table th { background-color: transparent; color: var(--primary-color); }
         
         .wiki-content .wiki-stats + h3 {
             margin-top: 60px;
@@ -183,6 +183,7 @@
             <a href="#home" class="nav-logo pagelink">PowerTrims</a>
             <ul class="nav-links">
                 <li><a class="pagelink" href="#home">Home</a></li>
+                <li><a class="pagelink" href="#general">General Info</a></li>
                 <li><a class="pagelink" href="#abilities">Abilities</a></li>
                 <li><a class="pagelink" href="#rituals">Rituals</a></li>
                 <li><a class="pagelink" href="#config">Configuration</a></li>
@@ -208,12 +209,57 @@
                     <p class="section-subtitle">Learn more about the features and how to get started.</p>
                     
                     <div class="card-grid">
+                        <a class="pagelink card-link" href="#general"><div class="card"><h3>General Info</h3><p>Learn the basics of how to use PowerTrims.</p></div></a>
                         <a class="pagelink card-link" href="#abilities"><div class="card"><h3>Master Your Powers</h3><p>See a complete list of every trim ability and what it does.</p></div></a>
-                        <a class="pagelink card-link" href="#rituals"><div class="card"><h3>Ritual</h3><p>Discover how to upgrade your armor to unlock powerful Ultimate Abilities.</p></div></a>
+                        <a class="pagelink card-link" href="#rituals"><div class="card"><h3>Become Ultimate</h3><p>Discover how to upgrade your armor to unlock powerful Ultimate Abilities.</p></div></a>
                         <a class="pagelink card-link" href="#config"><div class="card"><h3>Customize Your Server</h3><p>Get a full breakdown of the configuration options and commands.</p></div></a>
                         <a class="pagelink card-link" href="#community"><div class="card"><h3>Join the Fight</h3><p>Get support, ask questions, and share your ideas with other players.</p></div></a>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="page-general" class="page general-info-content">
+            <div class="container">
+                <h2>General Info</h2>
+                <p>To gain the powerful abilities of a Power Trim, a player must be wearing a full set of armor (helmet, chestplate, leggings, and boots) that all have the same armor trim pattern applied. Mismatched pieces will not grant any effects.</p>
+                
+                <h3>Controls & Keybinds</h3>
+                <ul>
+                    <li><strong>Primary Abilities:</strong> To activate your armor's Primary Ability, press the default Swap Item in Hand key while sneaking (Default: Shift + F).</li>
+                    <li><strong>Passive Abilities:</strong> These are always active as long as you are wearing the full set of trimmed armor. No keybind is needed.</li>
+                    <li><strong>Disrupt Abilities:</strong> These trigger automatically under specific conditions (like taking heavy damage or falling to low health). No keybind is needed.</li>
+                </ul>
+
+                <h3>Commands & Permissions</h3>
+                <p>The base command for the plugin is <code>/powertrims</code> (alias: <code>/pt</code>).</p>
+                <table class="commands-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/pt resetcooldown</code></td>
+                            <td>Resets all of a player's trim cooldowns.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/trust &lt;player&gt;</code></td>
+                            <td>Prevents abilities to harm trusted players.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/untrust &lt;player&gt;</code></td>
+                            <td>Removes trust from trusted player so abilities work on them.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/trustlist</code></td>
+                            <td>Shows the list of all trusted players.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a></div>
             </div>
         </section>
 
@@ -222,23 +268,23 @@
                 <h2>All Trim Abilities</h2>
                 <p class="section-subtitle">Click on any trim to learn its stats and how to use it effectively.</p>
                 <div class="card-grid">
-                    <a class="pagelink card-link" href="#trim-sentry"><div class="card"><h3>Sentry</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-silence"><div class="card"><h3>Silence</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-vex"><div class="card"><h3>Vex</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-ward"><div class="card"><h3>Ward</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-wild"><div class="card"><h3>Wild</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-coast"><div class="card"><h3>Coast</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-dune"><div class="card"><h3>Dune</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-eye"><div class="card"><h3>Eye</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-host"><div class="card"><h3>Host</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-raiser"><div class="card"><h3>Raiser</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-rib"><div class="card"><h3>Rib</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-snout"><div class="card"><h3>Snout</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-spire"><div class="card"><h3>Spire</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-tide"><div class="card"><h3>Tide</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-wayfinder"><div class="card"><h3>Wayfinder</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-flow"><div class="card"><h3>Flow</h3><p>Click to see ability</p></div></a>
-                    <a class="pagelink card-link" href="#trim-bolt"><div class="card"><h3>Bolt</h3><p>Click to see ability</p></div></a>
+                    <a class="pagelink card-link" href="#trim-sentry"><div class="card"><h3>Sentry</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-silence"><div class="card"><h3>Silence</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-vex"><div class="card"><h3>Vex</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-ward"><div class="card"><h3>Ward</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-wild"><div class="card"><h3>Wild</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-coast"><div class="card"><h3>Coast</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-dune"><div class="card"><h3>Dune</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-eye"><div class="card"><h3>Eye</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-host"><div class="card"><h3>Host</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-raiser"><div class="card"><h3>Raiser</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-rib"><div class="card"><h3>Rib</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-snout"><div class="card"><h3>Snout</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-spire"><div class="card"><h3>Spire</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-tide"><div class="card"><h3>Tide</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-wayfinder"><div class="card"><h3>Wayfinder</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-flow"><div class="card"><h3>Flow</h3></div></a>
+                    <a class="pagelink card-link" href="#trim-bolt"><div class="card"><h3>Bolt</h3></div></a>
                 </div>
                  <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a></div>
             </div>
@@ -247,25 +293,35 @@
         <section id="page-rituals" class="page ritual-content">
             <div class="container">
                 <h2>How to Get Ultimate Abilities</h2>
-                <p class="section-subtitle">Upgrade a full set of matching trimmed armor to unlock a more powerful "Ultimate Ability." Here is how it works.</p>
+                <p>To unlock an Ultimate Ability, you must perform a ritual:</p>
+                <ol>
+                    <li>Type <code>/upgrade</code></li>
+                    <li>Place a full set of Silence-trimmed armor into the menu.</li>
+                    <li>Click <strong>Initiate</strong> to begin the ritual!</li>
+                </ol>
+                <img src="2025-10-20_12.56.35.png" alt="Upgrade command in chat" style="width:100%; border-radius: 8px; margin-top: 15px;">
+                <img src="2025-10-20_12.56.48.png" alt="Ultimate Upgrader GUI with armor" style="width:100%; border-radius: 8px; margin-top: 15px;">
+                <p><strong>IMPORTANT NOTE:</strong> You must have the required materials specified in the <code>rituals.yml</code> file to complete the ritual.</p>
                 
-                <div class="ritual-step">
-                    <h3>Step 1: Start the Upgrade</h3>
-                    <p>To begin, simply type the command <code>/upgrade</code> in your chat. This will open the Ultimate Upgrader window.</p>
-                    <img src="2025-10-20_12.56.35.png" alt="Upgrade command in chat" style="width:100%; border-radius: 8px; margin-top: 15px;">
-                </div>
-                
-                <div class="ritual-step">
-                    <h3>Step 2: Place Your Armor</h3>
-                    <p>Inside the Ultimate Upgrader, place a full set of armor (helmet, chestplate, leggings, and boots). All four pieces must have the <strong>same armor trim pattern</strong> (e.g., all Sentry, or all Ward).</p>
-                    <img src="2025-10-20_12.56.48.png" alt="Ultimate Upgrader GUI with armor" style="width:100%; border-radius: 8px; margin-top: 15px;">
-                </div>
+                <h4>Ritual Configuration (rituals.yml)</h4>
+                <pre><code>rituals:
+  SILENCE:
+    # Set to false to disable this specific upgrade ritual.
+    enabled: true
+    # Duration of the ritual in seconds.
+    duration: 10
+    # Maximum number of times this armor set can be created. Set to -1 for no limit.
+    limit: 2
+    # List of materials required for the ritual, in the format 'MATERIAL_NAME:AMOUNT'.
+    materials:
+      - 'DIAMOND_BLOCK:1'
+      - 'NETHERITE_INGOT:4'
+      - 'ECHO_SHARD:8'
+      - 'SCULK_CATALYST:1'</code></pre>
 
-                <div class="ritual-step">
-                    <h3>Step 3: Initiate the Ritual</h3>
-                    <p>Once the full, matching set of armor is in place, click the "Initiate Ritual" button. If successful, the ritual will begin, and your armor set will be upgraded to its Ultimate form.</p>
-                </div>
-                
+                <h4>Ultimate Ability: Transformation</h4>
+                <p>The ultimate ability is a transformation ability and has further sub-abilities which can be activated by <strong>Shift+7</strong>, <strong>Shift+8</strong>, and <strong>Shift+9</strong>.</p>
+
                 <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a></div>
             </div>
         </section>
@@ -379,7 +435,7 @@ true_damage: 0.5</code></pre>
             }
 
             function handleRouteChange() {
-                const allowedPages = ['home', 'abilities', 'rituals', 'config', 'download', 'community'];
+                const allowedPages = ['home', 'abilities', 'rituals', 'config', 'download', 'community', 'general'];
                 const trimPages = ['sentry', 'silence', 'vex', 'ward', 'wild', 'coast', 'dune', 'eye', 'host', 'raiser', 'rib', 'snout', 'spire', 'tide', 'wayfinder', 'flow', 'bolt'];
                 
                 let hash = window.location.hash.substring(1);
