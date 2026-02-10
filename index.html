@@ -1,234 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PowerTrims - Transform Your Minecraft Gameplay</title>
-    <meta name="description" content="The official site for the PowerTrims Minecraft plugin. Discover unique abilities, perform rituals for ultimate power, and transform your server.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="description"
+        content="The official site for the PowerTrims Minecraft plugin. Discover unique abilities, perform rituals for ultimate power, and transform your server.">
 
-    <style>
-        :root {
-            --background-color: #1A1A2E;
-            --container-bg: #16213E; 
-            --primary-color: #E94560;
-            --text-color: #E0E0E0; 
-            --border-color: #0F3460; 
-            --shadow-color: rgba(0, 0, 0, 0.3);
-            --font-header: 'Montserrat', sans-serif;
-            --font-body: 'Open Sans', sans-serif;
-        }
-
-        *, *::before, *::after { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-body);
-            background-color: var(--background-color);
-            color: var(--text-color);
-            margin: 0;
-            padding-top: 70px;
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        section.page { padding: 80px 0; animation: fadeIn 0.5s ease-in-out; }
-        
-        h1, h2, h3 { font-family: var(--font-header); font-weight: 700; color: var(--primary-color); margin-top: 0; }
-        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
-        h3 { font-size: 1.5rem; color: var(--primary-color); }
-        h4 { font-family: var(--font-header); font-size: 1.2rem; color: var(--text-color); }
-        p.section-subtitle { text-align: center; max-width: 700px; margin: 0 auto 60px auto; font-size: 1.1rem; color: var(--text-color); }
-        a { color: var(--link-color); text-decoration: none; transition: color 0.2s; }
-        a:hover { text-decoration: underline; color: var(--primary-color); }
-
-        .navbar {
-            background-color: var(--container-bg);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed; top: 0; left: 0; width: 100%;
-            padding: 15px 0; z-index: 1000; 
-            box-shadow: 0 2px 10px var(--shadow-color);
-        }
-        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { font-family: var(--font-header); font-size: 1.8rem; color: var(--primary-color); }
-        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        .nav-links a { font-weight: 600; font-family: var(--font-body); cursor: pointer; color: var(--text-color); }
-        .nav-links a:hover { color: var(--primary-color); text-decoration: none; }
-
-        .hero { text-align: center; padding: 120px 0; background-color: transparent; }
-        .hero h1 { font-size: 4rem; color: var(--primary-color); }
-        .hero .subtitle { font-size: 1.25rem; max-width: 700px; margin: 0 auto 40px; color: var(--text-color); }
-        
-        .btn {
-            display: inline-block; padding: 15px 35px; font-family: var(--font-header);
-            text-decoration: none; color: var(--text-color); background-color: transparent;
-            border: 2px solid var(--primary-color);
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out; font-size: 1rem; font-weight: 700; cursor: pointer;
-        }
-        .btn:hover { background-color: var(--primary-color); color: var(--background-color); transform: translateY(-3px); }
-        .btn.primary { background-color: var(--primary-color); color: var(--background-color); }
-        .btn.primary:hover { background-color: transparent; color: var(--primary-color); }
-
-        .alt-bg { background: var(--container-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        
-        .card-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-        
-        .card {
-            background-color: var(--container-bg);
-            padding: 30px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px var(--shadow-color);
-            border-radius: 8px;
-            text-align: center;
-            flex-basis: 250px;
-            flex-grow: 1;
-            max-width: 350px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        a.card-link { text-decoration: none; color: inherit; display: flex; }
-        
-        a.card-link .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-        }
-
-        pre { 
-            background-color: var(--container-bg);
-            color: var(--text-color); 
-            padding: 20px; 
-            border-radius: 8px; 
-            border: 1px solid var(--border-color); 
-            font-family: monospace; 
-            white-space: pre-wrap; 
-            word-wrap: break-word; 
-        }
-        code { 
-            background-color: var(--background-color); 
-            padding: 3px 6px; 
-            border-radius: 4px; 
-            font-family: monospace; 
-            border: 1px solid var(--border-color); 
-            color: var(--primary-color); 
-        }
-        
-        .wiki-content, .ritual-content, .config-content, .general-info-content { max-width: 800px; margin: 0 auto; }
-        .wiki-stats, .commands-table {
-            margin-top: 30px;
-            border-collapse: collapse;
-            width: 100%;
-            background-color: var(--container-bg);
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .wiki-stats th, .wiki-stats td, .commands-table th, .commands-table td {
-            text-align: left;
-            padding: 15px;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-color);
-        }
-        .wiki-stats th, .commands-table th { background-color: transparent; color: var(--primary-color); }
-        
-        .wiki-content .wiki-stats + h3 {
-            margin-top: 60px;
-        }
-        
-        .footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); background-color: var(--container-bg); }
-        .footer p { color: var(--text-color); }
-
-        .page { display: none; }
-        .page.active { display: block; }
-
-        .social-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        @media (max-width: 768px) {
-            body { padding-top: 0; }
-            .navbar { position: relative; }
-            .nav-links { display: none; }
-            .hero h1 { font-size: 3rem; }
-            h2 { font-size: 2rem; }
-        }
-
-        .ritual-step, .config-block {
-            padding: 20px 0;
-            text-align: left;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .ritual-step:last-child, .config-block:last-child {
-            margin-bottom: 0;
-            border-bottom: none;
-        }
-        #page-config h4 {
-            color: #E94560;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/minecraft-animations.css">
+    <script src="config-builder.js" defer></script>
 </head>
+
 <body>
 
-    <header class="navbar">
+    <nav class="navbar">
         <div class="container">
             <a href="#home" class="nav-logo pagelink">PowerTrims</a>
             <ul class="nav-links">
                 <li><a class="pagelink" href="#home">Home</a></li>
-                <li><a class="pagelink" href="#general">General Info</a></li>
                 <li><a class="pagelink" href="#abilities">Abilities</a></li>
                 <li><a class="pagelink" href="#rituals">Rituals</a></li>
-                <li><a class="pagelink" href="#config">Configuration</a></li>
-                <li><a class="pagelink" href="#community">Community</a></li>
-                <li><a class="pagelink" href="#download">Download</a></li>
+                <li><a class="pagelink" href="#config">Config</a></li>
+                <li><a class="pagelink nav-cta" href="#download">Download</a></li>
             </ul>
+            <button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
         </div>
-    </header>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-overlay" onclick="toggleMobileNav()"></div>
+    <div class="mobile-nav-drawer">
+        <div class="mobile-nav-header">POWER TRIMS</div>
+        <ul class="mobile-nav-links" style="list-style:none; padding:0; text-align:center;">
+            <li style="margin:20px 0;"><a href="#home" class="pagelink mobile-link" onclick="toggleMobileNav()"
+                    style="color:white; text-decoration:none; font-size:1.2rem;">Home</a></li>
+            <li style="margin:20px 0;"><a href="#abilities" class="pagelink mobile-link" onclick="toggleMobileNav()"
+                    style="color:white; text-decoration:none; font-size:1.2rem;">Abilities</a></li>
+            <li style="margin:20px 0;"><a href="#rituals" class="pagelink mobile-link" onclick="toggleMobileNav()"
+                    style="color:white; text-decoration:none; font-size:1.2rem;">Rituals</a></li>
+            <li style="margin:20px 0;"><a href="#config" class="pagelink mobile-link" onclick="toggleMobileNav()"
+                    style="color:white; text-decoration:none; font-size:1.2rem;">Config</a></li>
+            <li style="margin:20px 0;"><a href="#download" class="pagelink mobile-link" onclick="toggleMobileNav()"
+                    style="color:var(--mc-gold); text-decoration:none; font-size:1.2rem;">Download</a></li>
+        </ul>
+    </div>
 
     <main>
         <section id="page-home" class="page active">
             <div class="hero">
-                <div class="container">
-                    <h1>Give Your Armor Real Power</h1>
-                    <p class="subtitle">PowerTrims is a plugin that turns cosmetic armor trims into useful abilities, adding new gameplay and strategy to your server.</p>
-                    <a class="btn pagelink" href="#download">Get The Plugin</a>
-                </div>
-            </div>
+                <!-- Parallax Background -->
+                <!-- Parallax Background Removed for Modern CSS Background -->
 
-            <div style="padding: 80px 0;">
-                <div class="container">
-                    <h2>Explore The Plugin</h2>
-                    <p class="section-subtitle">Learn more about the features and how to get started.</p>
-                    
-                    <div class="card-grid">
-                        <a class="pagelink card-link" href="#general"><div class="card"><h3>General Info</h3><p>Learn the basics of how to use PowerTrims.</p></div></a>
-                        <a class="pagelink card-link" href="#abilities"><div class="card"><h3>Master Your Powers</h3><p>See a complete list of every trim ability and what it does.</p></div></a>
-                        <a class="pagelink card-link" href="#rituals"><div class="card"><h3>Ultimates</h3><p>Discover how to upgrade your armor to unlock powerful Ultimate Abilities.</p></div></a>
-                        <a class="pagelink card-link" href="#config"><div class="card"><h3>Customize Your Server</h3><p>Get a full breakdown of the configuration options and commands.</p></div></a>
-                        <a class="pagelink card-link" href="#community"><div class="card"><h3>Join the Fight</h3><p>Get support, ask questions, and share your ideas with other players.</p></div></a>
+
+                <div class="hero-content-centered">
+                    <h1>Unlock True Power</h1>
+                    <p class="subtitle">
+                        PowerTrims adds gameplay depth to armor trims. Perform rituals, unlock ultimates, and
+                        customize your server's meta.
+                    </p>
+                    <div class="hero-btns">
+                        <a class="btn primary pagelink" href="#download">Download Plugin</a>
+                        <a class="btn secondary pagelink" href="#abilities">View Abilities</a>
                     </div>
                 </div>
-            </div>
+
+                <div style="padding: 80px 0;">
+                    <div class="container">
+                        <h2>Explore The Plugin</h2>
+                        <p class="section-subtitle">Learn more about the features and how to get started.</p>
+
+                        <div class="card-grid">
+                            <a class="pagelink card-link" href="#general">
+                                <div class="card">
+                                    <h3>General Info</h3>
+                                    <p>Learn the basics of how to use PowerTrims.</p>
+                                </div>
+                            </a>
+                            <a class="pagelink card-link" href="#abilities">
+                                <div class="card">
+                                    <h3>Master Your Powers</h3>
+                                    <p>See a complete list of every trim ability and what it does.</p>
+                                </div>
+                            </a>
+                            <a class="pagelink card-link" href="#rituals">
+                                <div class="card">
+                                    <h3>Ultimates</h3>
+                                    <p>Discover how to upgrade your armor to unlock powerful Ultimate Abilities.</p>
+                                </div>
+                            </a>
+                            <a class="pagelink card-link" href="#config">
+                                <div class="card">
+                                    <h3>Customize Your Server</h3>
+                                    <p>Get a full breakdown of the configuration options and commands.</p>
+                                </div>
+                            </a>
+                            <a class="pagelink card-link" href="#community">
+                                <div class="card">
+                                    <h3>Join the Fight</h3>
+                                    <p>Get support, ask questions, and share your ideas with other players.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
         </section>
 
         <section id="page-general" class="page general-info-content">
             <div class="container">
                 <h2>General Info</h2>
-                <p>To gain the powerful abilities of a Power Trim, a player must be wearing a full set of armor (helmet, chestplate, leggings, and boots) that all have the same armor trim pattern applied. Mismatched pieces will not grant any effects.</p>
-                
+                <p>To gain the powerful abilities of a Power Trim, a player must be wearing a full set of armor (helmet,
+                    chestplate, leggings, and boots) that all have the same armor trim pattern applied. Mismatched
+                    pieces will not grant any effects.</p>
+
                 <h3>Controls & Keybinds</h3>
                 <ul>
-                    <li><strong>Primary Abilities:</strong> To activate your armor's Primary Ability, press the default Swap Item in Hand key while sneaking (Default: Shift + F).</li>
-                    <li><strong>Passive Abilities:</strong> These are always active as long as you are wearing the full set of trimmed armor. No keybind is needed.</li>
-                    <li><strong>Disrupt Abilities:</strong> These trigger automatically under specific conditions (like taking heavy damage or falling to low health). No keybind is needed.</li>
+                    <li><strong>Primary Abilities:</strong> To activate your armor's Primary Ability, press the default
+                        Swap Item in Hand key while sneaking (Default: Shift + F).</li>
+                    <li><strong>Passive Abilities:</strong> These are always active as long as you are wearing the full
+                        set of trimmed armor. No keybind is needed.</li>
+                    <li><strong>Disrupt Abilities:</strong> These trigger automatically under specific conditions (like
+                        taking heavy damage or falling to low health). No keybind is needed.</li>
                 </ul>
 
                 <h3>Commands & Permissions</h3>
@@ -259,7 +152,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a></div>
+                <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a>
+                </div>
             </div>
         </section>
 
@@ -267,147 +161,1826 @@
             <div class="container">
                 <h2>All Trim Abilities</h2>
                 <p class="section-subtitle">Click on any trim to learn its stats and how to use it effectively.</p>
-                <div class="card-grid">
-                    <a class="pagelink card-link" href="#trim-sentry"><div class="card"><h3>Sentry</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-silence"><div class="card"><h3>Silence</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-vex"><div class="card"><h3>Vex</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-ward"><div class="card"><h3>Ward</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-wild"><div class="card"><h3>Wild</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-coast"><div class="card"><h3>Coast</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-dune"><div class="card"><h3>Dune</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-eye"><div class="card"><h3>Eye</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-host"><div class="card"><h3>Host</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-raiser"><div class="card"><h3>Raiser</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-rib"><div class="card"><h3>Rib</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-snout"><div class="card"><h3>Snout</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-spire"><div class="card"><h3>Spire</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-tide"><div class="card"><h3>Tide</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-wayfinder"><div class="card"><h3>Wayfinder</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-flow"><div class="card"><h3>Flow</h3></div></a>
-                    <a class="pagelink card-link" href="#trim-bolt"><div class="card"><h3>Bolt</h3></div></a>
+
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <button class="filter-btn active" onclick="filterSelection('all')">All Trims</button>
+                    <button class="filter-btn" onclick="filterSelection('offensive')">Offensive</button>
+                    <button class="filter-btn" onclick="filterSelection('defensive')">Defensive</button>
+                    <button class="filter-btn" onclick="filterSelection('mobility')">Mobility</button>
+                    <button class="filter-btn" onclick="filterSelection('utility')">Utility</button>
+                    <button class="filter-btn" onclick="filterSelection('summoning')">Summoning</button>
+                    <input type="text" id="abilitySearch" class="search-input" placeholder="Search Trims..."
+                        onkeyup="searchAbilities()">
                 </div>
-                 <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a></div>
+
+                <div class="card-grid" id="abilitiesGrid">
+                    <!-- Sentry -->
+                    <a class="card-link-wrapper pagelink" href="#trim-sentry" data-category="offensive">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-sentry" style="--trim-color: #AAFFFF;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Sentry</h3>
+                                <span class="badge offensive">Offensive</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">90s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Ranged</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Silence -->
+                    <a class="card-link-wrapper pagelink" href="#trim-silence" data-category="defensive offensive">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-silence" style="--trim-color: #00AAAA;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Silence</h3>
+                                <span class="badge defensive">Defensive</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">90s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Area Control</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Vex -->
+                    <a class="card-link-wrapper pagelink" href="#trim-vex" data-category="utility offensive">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-vex" style="--trim-color: #CCCCCC;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Vex</h3>
+                                <span class="badge utility">Utility</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">120s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Debuff</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Ward -->
+                    <a class="card-link-wrapper pagelink" href="#trim-ward" data-category="defensive">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-ward" style="--trim-color: #55FFFF;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Ward</h3>
+                                <span class="badge defensive">Defensive</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">120s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Tank</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Wild -->
+                    <a class="card-link-wrapper pagelink" href="#trim-wild" data-category="offensive mobility">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-wild" style="--trim-color: #55FF55;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Wild</h3>
+                                <span class="badge mobility">Mobility</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">20s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Grapple</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Coast -->
+                    <a class="card-link-wrapper pagelink" href="#trim-coast" data-category="offensive control">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-coast" style="--trim-color: #55FFFF;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Coast</h3>
+                                <span class="badge offensive">Control</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">60s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Pull</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Dune -->
+                    <a class="card-link-wrapper pagelink" href="#trim-dune" data-category="offensive utility">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-dune" style="--trim-color: #FFFF55;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Dune</h3>
+                                <span class="badge offensive">Offensive</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">60s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Sandstorm</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Eye -->
+                    <a class="card-link-wrapper pagelink" href="#trim-eye" data-category="utility">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-eye" style="--trim-color: #55FF55;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Eye</h3>
+                                <span class="badge utility">Utility</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">120s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Recon</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Host -->
+                    <a class="card-link-wrapper pagelink" href="#trim-host" data-category="utility">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-host" style="--trim-color: #FFAA00;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Host</h3>
+                                <span class="badge utility">Utility</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">120s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Steal</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Raiser -->
+                    <a class="card-link-wrapper pagelink" href="#trim-raiser" data-category="offensive control">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-raiser" style="--trim-color: #AA00AA;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Raiser</h3>
+                                <span class="badge offensive">Control</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">120s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Slam</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Rib -->
+                    <a class="card-link-wrapper pagelink" href="#trim-rib" data-category="summoning">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-rib" style="--trim-color: #FF5555;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Rib</h3>
+                                <span class="badge summoning">Summoning</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">60s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Minion</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Snout -->
+                    <a class="card-link-wrapper pagelink" href="#trim-snout" data-category="summoning">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-snout" style="--trim-color: #555555;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Snout</h3>
+                                <span class="badge summoning">Summoning</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">120s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Minion</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Spire -->
+                    <a class="card-link-wrapper pagelink" href="#trim-spire" data-category="mobility offensive">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-spire" style="--trim-color: #AA00AA;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Spire</h3>
+                                <span class="badge mobility">Mobility</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">30s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Dash</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Tide -->
+                    <a class="card-link-wrapper pagelink" href="#trim-tide" data-category="offensive control">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-tide" style="--trim-color: #5555FF;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Tide</h3>
+                                <span class="badge offensive">Control</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">120s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Wave</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Wayfinder -->
+                    <a class="card-link-wrapper pagelink" href="#trim-wayfinder" data-category="mobility">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-wayfinder" style="--trim-color: #AAAAAA;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Wayfinder</h3>
+                                <span class="badge mobility">Mobility</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">120s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Teleport</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Flow -->
+                    <a class="card-link-wrapper pagelink" href="#trim-flow" data-category="mobility">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-flow" style="--trim-color: #55FFFF;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Flow</h3>
+                                <span class="badge mobility">Mobility</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">60s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Flight</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Bolt -->
+                    <a class="card-link-wrapper pagelink" href="#trim-bolt" data-category="offensive">
+                        <div class="ability-card">
+                            <div class="card-header">
+                                <div class="armor-icon trim-bolt" style="--trim-color: #FFFF55;"></div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Bolt</h3>
+                                <span class="badge offensive">Offensive</span>
+                                <div class="stat-row">
+                                    <span>Cooldown</span>
+                                    <span class="stat-value">20s</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span>Type</span>
+                                    <span class="stat-value">Lightning</span>
+                                </div>
+                            </div>
+                            <div class="card-hover-overlay">
+                                <div class="overlay-text">VIEW DETAILS</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a>
+                </div>
             </div>
         </section>
-        
-        <section id="page-rituals" class="page ritual-content">
+
+        <section id="page-rituals" class="page ritual-content config-content">
             <div class="container">
-                <h2>How to Get Ultimate Abilities</h2>
-                <p>To unlock an Ultimate Ability, you must perform a ritual:</p>
-                <ol>
-                    <li>Type <code>/upgrade</code></li>
-                    <li>Place a full set of Silence-trimmed armor into the menu.</li>
-                    <li>Click <strong>Initiate</strong> to begin the ritual!</li>
-                </ol>
-                <img src="2025-10-20_12.56.35.png" alt="Upgrade command in chat" style="width:100%; border-radius: 8px; margin-top: 15px;">
-                <img src="2025-10-20_12.56.48.png" alt="Ultimate Upgrader GUI with armor" style="width:100%; border-radius: 8px; margin-top: 15px;">
-                <p><strong>IMPORTANT NOTE:</strong> You must have the required materials specified in the <code>rituals.yml</code> file to complete the ritual.</p>
-                
-                <h4>Ritual Configuration (rituals.yml)</h4>
-                <pre><code>rituals:
-  SILENCE:
-    # Set to false to disable this specific upgrade ritual.
-    enabled: true
-    # Duration of the ritual in seconds.
-    duration: 10
-    # Maximum number of times this armor set can be created. Set to -1 for no limit.
-    limit: 2
-    # List of materials required for the ritual, in the format 'MATERIAL_NAME:AMOUNT'.
-    materials:
-      - 'DIAMOND_BLOCK:1'
-      - 'NETHERITE_INGOT:4'
-      - 'ECHO_SHARD:8'
-      - 'SCULK_CATALYST:1'</code></pre>
+                <h2>Ultimates & Rituals</h2>
+                <p class="section-subtitle">Configure the rituals to unlock ultimate abilities.</p>
 
-                <h4>Ultimate Ability: Transformation</h4>
-                <p>The ultimate ability is a transformation ability and has further sub-abilities which can be activated by <strong>Shift+7</strong>, <strong>Shift+8</strong>, and <strong>Shift+9</strong>.</p>
+                <div class="config-builder animate-on-scroll">
+                    <!-- Sidebar: Toggles -->
+                    <div class="config-sidebar">
+                        <h3>Enabled Rituals</h3>
+                        <div class="trim-toggles-grid">
+                            <div class="switch-row"><label>Sentry</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-sentry" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Silence</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-silence" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Vex</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-vex" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Ward</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-ward" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Wild</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-wild" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Coast</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-coast" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Dune</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-dune" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Eye</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-eye" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Host</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-host" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Raiser</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-raiser" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Rib</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-rib" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Snout</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-snout" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Spire</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-spire" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Tide</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-tide" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Wayfinder</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-wayfinder" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Flow</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-flow" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                            <div class="switch-row"><label>Bolt</label><label class="switch"><input type="checkbox"
+                                        id="ritual-enable-bolt" checked onchange="updateRitualsPreview()"><span
+                                        class="slider"></span></label></div>
+                        </div>
+                    </div>
 
-                <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a></div>
+                    <!-- Main: Configs -->
+                    <div class="config-main">
+                        <!-- Guide Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header active" onclick="toggleAccordion('ritual-guide')">
+                                <span>📚 How to Unlock (Guide)</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content active" id="accordion-ritual-guide">
+                                <div class="ritual-guide">
+                                    <div class="step-card">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <h4>Command</h4>
+                                            <p>Type <code>/upgrade</code> in chat to open the Ritual Altar.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-card">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <h4>Ingredient</h4>
+                                            <p>Place a full set of <strong>Trimmed Armor</strong> and required
+                                                materials.</p>
+                                        </div>
+                                    </div>
+                                    <div class="step-card">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <h4>Initiate</h4>
+                                            <p>Click the <strong>Emerald Button</strong> to unlock the Ultimate!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: var(--spacing-lg);">Ritual Configuration</h3>
+
+                        <!-- Ritual Template for Each Trim -->
+                        <!-- Displays only Silence for now as requested -->
+
+                        <!-- Silence -->
+                        <div class="accordion-item">
+                            <button class="accordion-header active" onclick="toggleAccordion('rit-silence')"><span>🤫
+                                    Silence
+                                    Ritual</span><span class="accordion-icon">▼</span></button>
+                            <div class="accordion-content active" id="accordion-rit-silence">
+                                <div class="config-input-group"><label>Duration (s):</label><input type="number"
+                                        class="config-input" id="ritual-duration-silence" value="10"
+                                        onchange="updateRitualsPreview()"></div>
+                                <div class="config-input-group"><label>Limit (-1 for infinite):</label><input
+                                        type="number" class="config-input" id="ritual-limit-silence" value="2"
+                                        onchange="updateRitualsPreview()"></div>
+
+                                <!-- Interactive Recipe Editor -->
+                                <div class="config-input-group">
+                                    <label>Ritual Recipe (Components):</label>
+                                    <div class="recipe-editor-wrapper">
+                                        <div class="crafting-grid" id="crafting-grid-silence">
+                                            <!-- JS will populate slots -->
+                                        </div>
+                                        <div class="recipe-controls">
+                                            <button class="btn-small" onclick="clearRecipe('silence')">Clear
+                                                All</button>
+                                        </div>
+                                    </div>
+                                    <!-- Hidden input for YAML generation -->
+                                    <textarea class="config-input" id="ritual-materials-silence" style="display:none;"
+                                        onchange="updateRitualsPreview()">DIAMOND_BLOCK:1
+NETHERITE_INGOT:4
+SCULK_CATALYST:1</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p style="text-align:center; color: var(--text-muted); margin-top:20px;">(Other rituals hidden
+                            for this view)</p>
+                    </div>
+
+                    <!-- Preview -->
+                    <div class="config-preview">
+                        <div class="preview-header">
+                            <span class="preview-title">rituals.yml</span>
+                            <div class="preview-actions">
+                                <button class="copy-btn" onclick="copyRitualsConfig()">COPY</button>
+                                <button class="download-btn" onclick="downloadRitualsConfig()">DOWNLOAD</button>
+                            </div>
+                        </div>
+                        <pre><code class="language-yaml" id="rituals-yaml-preview"># Rituals Configuration loading...</code></pre>
+                    </div>
+                </div>
             </div>
         </section>
 
         <div id="wiki-pages">
-            <section id="page-trim-sentry" class="page wiki-content"><div class="container"><h2>Sentry Trim</h2><p>Fire spectral arrows to inflict large damage on nearby enemies. Deal good amount of damage to nearby enemies.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>90 Seconds</td></tr><tr><td>Arrow Count</td><td>3</td></tr><tr><td>True Damage</td><td>0.5 per arrow</td></tr><tr><td>Passive Ability</td><td>Grants Resistance I while wearing Full Sentry Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-silence" class="page wiki-content"><div class="container"><h2>Silence Trim</h2><p>Releases a terrifying Warden's Roar that disables Ender Pearls in a 15-block radius. Blinds and slows all enemies in range for 20 seconds.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>90 Seconds</td></tr><tr><td>Radius</td><td>15 Blocks</td></tr><tr><td>Potion Duration</td><td>20 Seconds</td></tr><tr><td>Pearl Cooldown</td><td>10 Seconds</td></tr><tr><td>Passive Ability</td><td>Grants Strength II while wearing Full Silenced Trim Armor.</td></tr><tr><td>Disrupt Ability</td><td>Warden's Echo: Triggers automatically when you fall below 4 Hearts. Releases an Echo Pulse that knocks back enemies. Grants temporary Resistance II and Regeneration II (15 sec). Inflicts Weakness on enemies for 5 seconds. Cooldown: 2 minutes</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-vex" class="page wiki-content"><div class="container"><h2>Spectral Vex Trim</h2><p>Briefly debuffs nearby players.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>120 Seconds</td></tr><tr><td>Radius</td><td>30 Blocks</td></tr><tr><td>Damage</td><td>8.0</td></tr><tr><td>Debuff Duration</td><td>20 Seconds</td></tr><tr><td>Blindness Duration</td><td>5 Seconds</td></tr><tr><td>Passive Ability</td><td>Grants Speed II while wearing Full Vex Trimmed Armor.</td></tr><tr><td>Disrupt Ability</td><td>True Invisibility: Grants True Invisibility for 10 seconds. Makes you invisible even your armor and item in hand. Cooldown: 2 minutes</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-ward" class="page wiki-content"><div class="container"><h2>Ward Trim</h2><p>Creates a personal protective barrier. Grants Absorption V and Resistance III. Provides Fire Resistance for 10 seconds.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>120 Seconds</td></tr><tr><td>Barrier Duration</td><td>10 Seconds</td></tr><tr><td>Absorption Level</td><td>4</td></tr><tr><td>Resistance Boost Level</td><td>2</td></tr><tr><td>Passive Ability</td><td>Grants Resistance I while wearing Full Ward Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-wild" class="page wiki-content"><div class="container"><h2>Wild Trim</h2><p>Launch a vine up to 60 blocks. Can grapple to both blocks and enemies. Grappling an enemy poisons them for 10 seconds.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>20 Seconds</td></tr><tr><td>Poison Duration</td><td>10 Seconds</td></tr><tr><td>Grapple Range</td><td>60 Blocks</td></tr><tr><td>Passive Ability</td><td>Grants Regeneration I while wearing Full Wild Trim Armor.</td></tr><tr><td>Disrupt Ability</td><td>Root Trap: Triggers automatically when you get Low (4 hearts). Entangles nearby enemies with roots for 10 seconds, preventing movement. Cooldown: 20 seconds</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-coast" class="page wiki-content"><div class="container"><h2>Coast Trim</h2><p>Instantly pulls all nearby players and mobs toward you within a 30-block radius with a powerful burst of water, inflicting Weakness II and Slowness II for 4 seconds.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>60 Seconds</td></tr><tr><td>Water Burst Radius</td><td>30 Blocks</td></tr><tr><td>Water Burst Damage</td><td>10</td></tr><tr><td>Debuff Duration</td><td>4 Seconds</td></tr><tr><td>Passive Ability</td><td>Grants permanent Dolphin's Grace while wearing Full Coast Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-dune" class="page wiki-content"><div class="container"><h2>Dune Trim</h2><p>Unleash a powerful sandstorm. Blinds and slows all nearby enemies. Knocks back enemies with forceful winds. Grants Strength and Speed for 10 seconds.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>60 Seconds</td></tr><tr><td>Sandstorm Radius</td><td>12 Blocks</td></tr><tr><td>Sandstorm Damage</td><td>10</td></tr><tr><td>Duration</td><td>10 Seconds</td></tr><tr><td>Passive Ability</td><td>Grants Haste and Fire Resistance. Effects remain while wearing Full Dune Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-eye" class="page wiki-content"><div class="container"><h2>Eye Trim</h2><p>Reveals all entities within 80 blocks. Removes invisibility from hidden enemies. Makes all entities glow for easy tracking. Makes all entities get Slowed and Weakened for easy roping.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>120 Seconds</td></tr><tr><td>True Sight Radius</td><td>80 Blocks</td></tr><tr><td>True Sight Duration</td><td>30 Seconds</td></tr><tr><td>Passive Ability</td><td>Grants Night Vision while wearing Full Eye Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-host" class="page wiki-content"><div class="container"><h2>Host Trim</h2><p>Steal 2 hearts and most positive effects from nearby enemies. All positive are amplified by a level. Knock backs every entity moderately.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>120 Seconds</td></tr><tr><td>Effect Steal Radius</td><td>10 Blocks</td></tr><tr><td>Health Steal Amount</td><td>4.0 (2 Hearts)</td></tr><tr><td>Passive Ability</td><td>Most mobs stop attacking you.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-raiser" class="page wiki-content"><div class="container"><h2>Raiser Trim</h2><p>Jump up and land to create a shockwave. All entities are pulled towards you and have slowness and weakness applied for few seconds. Disable ender pearl for 10 sec.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>120 Seconds</td></tr><tr><td>Entity Pull Radius</td><td>15 Blocks</td></tr><tr><td>Pearl Cooldown</td><td>10 Seconds</td></tr><tr><td>Passive Ability</td><td>Negate all Fall damage.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-rib" class="page wiki-content"><div class="container"><h2>Rib Trim</h2><p>Summon a few Bogged to fight for you for 60 seconds.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>60 Seconds</td></tr><tr><td>Minion Lifespan</td><td>60 Seconds</td></tr><tr><td>Passive Ability</td><td>Grants Resistance I while wearing Full Rib Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-snout" class="page wiki-content"><div class="container"><h2>Snout Trim</h2><p>Summons a few Wither Skeletons to fight by your side for 90 seconds. These warriors will: Fight entities who attack you. Fight entities that You attack.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>120 Seconds</td></tr><tr><td>Minion Lifespan</td><td>90 Seconds</td></tr><tr><td>Passive Ability</td><td>Grants permanent Strength I while wearing Full Snout Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-spire" class="page wiki-content"><div class="container"><h2>Spire Trim</h2><p>Dash forward 8 blocks in your looking direction. Enemies hit during dash are: Knockbacked, and take 60% more damage.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>30 Seconds</td></tr><tr><td>Dash Distance</td><td>8 Blocks</td></tr><tr><td>Damage Amplification</td><td>60%</td></tr><tr><td>Passive Ability</td><td>Grants Speed II while wearing Full Spire Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-tide" class="page wiki-content"><div class="container"><h2>Tide Trim</h2><p>Summons a massive wall of water. Wall moves forward up to 20 blocks. Pushes back and slows enemies in its path. Wall height: 6 blocks.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>120 Seconds</td></tr><tr><td>Wave Width</td><td>3 Blocks</td></tr><tr><td>Effect Duration</td><td>15 Seconds</td></tr><tr><td>Knockback Strength</td><td>1.8</td></tr><tr><td>Passive Ability</td><td>Grants Dolphin's Grace 3 while wearing Full Tide Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-wayfinder" class="page wiki-content"><div class="container"><h2>Wayfinder Trim</h2><p>Mark a location for teleportation. Infinite range.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>120 Seconds</td></tr><tr><td>Passive Ability</td><td>Move fast while sneaking.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-flow" class="page wiki-content"><div class="container"><h2>Flow Trim</h2><p>Fly rapidly, propelled by gusts of wind. Consumes 1 heart per second to fly for 20 seconds.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>60 Seconds</td></tr><tr><td>Duration</td><td>20 Seconds</td></tr><tr><td>Heart Cost</td><td>1 per second</td></tr><tr><td>Passive Ability</td><td>Grants Speed II while wearing Full Flow Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
-            <section id="page-trim-bolt" class="page wiki-content"><div class="container"><h2>Bolt Trim</h2><p>Call down a lightning strike that chains between up to 3 targets.</p><table class="wiki-stats"><tr><th>Stat</th><th>Value</th></tr><tr><td>Cooldown</td><td>20 Seconds</td></tr><tr><td>Chain Range</td><td>10 Blocks</td></tr><tr><td>Max Chains</td><td>3 Targets</td></tr><tr><td>Initial Damage</td><td>6.0</td></tr><tr><td>Subsequent Damage</td><td>4.0</td></tr><tr><td>Passive Ability</td><td>Grants Speed III while wearing Full Bolt Trim Armor.</td></tr></table><p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink" href="#abilities">Back to All Abilities</a></div></section>
+            <section id="page-trim-sentry" class="page wiki-content">
+                <div class="container">
+                    <h2>Sentry Trim</h2>
+                    <p>Fire spectral arrows to inflict large damage on nearby enemies. Deal good amount of damage to
+                        nearby enemies.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>90 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Arrow Count</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>True Damage</td>
+                            <td>0.5 per arrow</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Resistance I while wearing Full Sentry Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-silence" class="page wiki-content">
+                <div class="container">
+                    <h2>Silence Trim</h2>
+                    <p>Releases a terrifying Warden's Roar that disables Ender Pearls in a 15-block radius. Blinds and
+                        slows all enemies in range for 20 seconds.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>90 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Radius</td>
+                            <td>15 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Potion Duration</td>
+                            <td>20 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Pearl Cooldown</td>
+                            <td>10 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Strength II while wearing Full Silenced Trim Armor.</td>
+                        </tr>
+                        <tr>
+                            <td>Disrupt Ability</td>
+                            <td>Warden's Echo: Triggers automatically when you fall below 4 Hearts. Releases an Echo
+                                Pulse that knocks back enemies. Grants temporary Resistance II and Regeneration II (15
+                                sec). Inflicts Weakness on enemies for 5 seconds. Cooldown: 2 minutes</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-vex" class="page wiki-content">
+                <div class="container">
+                    <h2>Spectral Vex Trim</h2>
+                    <p>Briefly debuffs nearby players.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>120 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Radius</td>
+                            <td>30 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Damage</td>
+                            <td>8.0</td>
+                        </tr>
+                        <tr>
+                            <td>Debuff Duration</td>
+                            <td>20 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Blindness Duration</td>
+                            <td>5 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Speed II while wearing Full Vex Trimmed Armor.</td>
+                        </tr>
+                        <tr>
+                            <td>Disrupt Ability</td>
+                            <td>True Invisibility: Grants True Invisibility for 10 seconds. Makes you invisible even
+                                your armor and item in hand. Cooldown: 2 minutes</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-ward" class="page wiki-content">
+                <div class="container">
+                    <h2>Ward Trim</h2>
+                    <p>Creates a personal protective barrier. Grants Absorption V and Resistance III. Provides Fire
+                        Resistance for 10 seconds.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>120 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Barrier Duration</td>
+                            <td>10 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Absorption Level</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Resistance Boost Level</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Resistance I while wearing Full Ward Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-wild" class="page wiki-content">
+                <div class="container">
+                    <h2>Wild Trim</h2>
+                    <p>Launch a vine up to 60 blocks. Can grapple to both blocks and enemies. Grappling an enemy poisons
+                        them for 10 seconds.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>20 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Poison Duration</td>
+                            <td>10 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Grapple Range</td>
+                            <td>60 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Regeneration I while wearing Full Wild Trim Armor.</td>
+                        </tr>
+                        <tr>
+                            <td>Disrupt Ability</td>
+                            <td>Root Trap: Triggers automatically when you get Low (4 hearts). Entangles nearby enemies
+                                with roots for 10 seconds, preventing movement. Cooldown: 20 seconds</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-coast" class="page wiki-content">
+                <div class="container">
+                    <h2>Coast Trim</h2>
+                    <p>Instantly pulls all nearby players and mobs toward you within a 30-block radius with a powerful
+                        burst of water, inflicting Weakness II and Slowness II for 4 seconds.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>60 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Water Burst Radius</td>
+                            <td>30 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Water Burst Damage</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Debuff Duration</td>
+                            <td>4 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants permanent Dolphin's Grace while wearing Full Coast Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-dune" class="page wiki-content">
+                <div class="container">
+                    <h2>Dune Trim</h2>
+                    <p>Unleash a powerful sandstorm. Blinds and slows all nearby enemies. Knocks back enemies with
+                        forceful winds. Grants Strength and Speed for 10 seconds.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>60 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Sandstorm Radius</td>
+                            <td>12 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Sandstorm Damage</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>10 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Haste and Fire Resistance. Effects remain while wearing Full Dune Trim Armor.
+                            </td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-eye" class="page wiki-content">
+                <div class="container">
+                    <h2>Eye Trim</h2>
+                    <p>Reveals all entities within 80 blocks. Removes invisibility from hidden enemies. Makes all
+                        entities glow for easy tracking. Makes all entities get Slowed and Weakened for easy roping.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>120 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>True Sight Radius</td>
+                            <td>80 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>True Sight Duration</td>
+                            <td>30 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Night Vision while wearing Full Eye Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-host" class="page wiki-content">
+                <div class="container">
+                    <h2>Host Trim</h2>
+                    <p>Steal 2 hearts and most positive effects from nearby enemies. All positive are amplified by a
+                        level. Knock backs every entity moderately.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>120 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Effect Steal Radius</td>
+                            <td>10 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Health Steal Amount</td>
+                            <td>4.0 (2 Hearts)</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Most mobs stop attacking you.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-raiser" class="page wiki-content">
+                <div class="container">
+                    <h2>Raiser Trim</h2>
+                    <p>Jump up and land to create a shockwave. All entities are pulled towards you and have slowness and
+                        weakness applied for few seconds. Disable ender pearl for 10 sec.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>120 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Entity Pull Radius</td>
+                            <td>15 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Pearl Cooldown</td>
+                            <td>10 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Negate all Fall damage.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-rib" class="page wiki-content">
+                <div class="container">
+                    <h2>Rib Trim</h2>
+                    <p>Summon a few Bogged to fight for you for 60 seconds.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>60 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Minion Lifespan</td>
+                            <td>60 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Resistance I while wearing Full Rib Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-snout" class="page wiki-content">
+                <div class="container">
+                    <h2>Snout Trim</h2>
+                    <p>Summons a few Wither Skeletons to fight by your side for 90 seconds. These warriors will: Fight
+                        entities who attack you. Fight entities that You attack.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>120 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Minion Lifespan</td>
+                            <td>90 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants permanent Strength I while wearing Full Snout Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-spire" class="page wiki-content">
+                <div class="container">
+                    <h2>Spire Trim</h2>
+                    <p>Dash forward 8 blocks in your looking direction. Enemies hit during dash are: Knockbacked, and
+                        take 60% more damage.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>30 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Dash Distance</td>
+                            <td>8 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Damage Amplification</td>
+                            <td>60%</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Speed II while wearing Full Spire Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-tide" class="page wiki-content">
+                <div class="container">
+                    <h2>Tide Trim</h2>
+                    <p>Summons a massive wall of water. Wall moves forward up to 20 blocks. Pushes back and slows
+                        enemies in its path. Wall height: 6 blocks.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>120 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Wave Width</td>
+                            <td>3 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Effect Duration</td>
+                            <td>15 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Knockback Strength</td>
+                            <td>1.8</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Dolphin's Grace 3 while wearing Full Tide Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-wayfinder" class="page wiki-content">
+                <div class="container">
+                    <h2>Wayfinder Trim</h2>
+                    <p>Mark a location for teleportation. Infinite range.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>120 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Move fast while sneaking.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-flow" class="page wiki-content">
+                <div class="container">
+                    <h2>Flow Trim</h2>
+                    <p>Fly rapidly, propelled by gusts of wind. Consumes 1 heart per second to fly for 20 seconds.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>60 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>20 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Heart Cost</td>
+                            <td>1 per second</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Speed II while wearing Full Flow Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
+            <section id="page-trim-bolt" class="page wiki-content">
+                <div class="container">
+                    <h2>Bolt Trim</h2>
+                    <p>Call down a lightning strike that chains between up to 3 targets.</p>
+                    <table class="wiki-stats">
+                        <tr>
+                            <th>Stat</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Cooldown</td>
+                            <td>20 Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Chain Range</td>
+                            <td>10 Blocks</td>
+                        </tr>
+                        <tr>
+                            <td>Max Chains</td>
+                            <td>3 Targets</td>
+                        </tr>
+                        <tr>
+                            <td>Initial Damage</td>
+                            <td>6.0</td>
+                        </tr>
+                        <tr>
+                            <td>Subsequent Damage</td>
+                            <td>4.0</td>
+                        </tr>
+                        <tr>
+                            <td>Passive Ability</td>
+                            <td>Grants Speed III while wearing Full Bolt Trim Armor.</td>
+                        </tr>
+                    </table>
+                    <p><i>All values are configurable in the plugin's config file.</i></p><a class="btn pagelink"
+                        href="#abilities">Back to All Abilities</a>
+                </div>
+            </section>
         </div>
-        
+
         <section id="page-community" class="page alt-bg">
             <div class="container" style="text-align: center;">
-               <h2>Join the Community</h2>
-               <p class="section-subtitle">Have questions, need support, or want to share ideas? Join our community!</p>
-               <div class="social-links">
-                   <a href="https://discord.gg/2uU3Rsw3" class="btn primary" style="margin: 10px;" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-                   <a href="https://github.com/divi922/POWER-TRIMS" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">View Source on GitHub</a>
-               </div>
-           </div>
-       </section>
+                <h2>Join the Community</h2>
+                <p class="section-subtitle">Have questions, need support, or want to share ideas? Join our community!
+                </p>
+                <div class="social-links">
+                    <a href="https://discord.gg/2uU3Rsw3" class="btn primary" style="margin: 10px;" target="_blank"
+                        rel="noopener noreferrer">Join our Discord</a>
+                    <a href="https://github.com/divi922/POWER-TRIMS" class="btn" style="margin: 10px;" target="_blank"
+                        rel="noopener noreferrer">View Source on GitHub</a>
+                </div>
+            </div>
+        </section>
 
         <section id="page-download" class="page">
-             <div class="container" style="text-align: center;">
-                 <h2>Get PowerTrims</h2>
-                 <p class="section-subtitle">Ready to add new abilities to your server? Download the latest version of the plugin.</p>
-                 <a href="https://modrinth.com/plugin/power-trimss" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">Download on Modrinth</a>
-                 <a href="https://github.com/divi922/POWER-TRIMS/releases" class="btn" style="margin: 10px;" target="_blank" rel="noopener noreferrer">Releases on GitHub</a>
-             </div>
+            <div class="container" style="text-align: center;">
+                <h2>Get PowerTrims</h2>
+                <p class="section-subtitle">Ready to add new abilities to your server? Download the latest version of
+                    the plugin.</p>
+                <a href="https://modrinth.com/plugin/power-trimss" class="btn" style="margin: 10px;" target="_blank"
+                    rel="noopener noreferrer">Download on Modrinth</a>
+                <a href="https://github.com/divi922/POWER-TRIMS/releases" class="btn" style="margin: 10px;"
+                    target="_blank" rel="noopener noreferrer">Releases on GitHub</a>
+            </div>
         </section>
 
         <section id="page-config" class="page config-content">
-             <div class="container">
-                <h2>Configuration Guide</h2>
-                <p class="section-subtitle">Learn how to customize every aspect of the PowerTrims plugin using the <code>config.yml</code> file.</p>
-                
-                <div class="config-block">
-                    <h4>Trim Toggles</h4>
-                    <p>Enable or disable specific trim abilities server-wide.</p>
-                    <pre><code>trims:
-sentry: true
-silence: false # Disabled
-vex: true</code></pre>
-                </div>
-                <div class="config-block">
-                     <h4>Passive Effects</h4>
-                     <p>You can add, change, or remove as many passive effects as you want. To give a trim multiple effects, add another line below the first effect. To give a trim no effects, leave the trim name blank.</p>
-                     <pre><code>passive_effects:
-silence:
-- STRENGTH:1
-- SPEED:1
-dune:
-- HASTE:0
-- FIRE_RESISTANCE:0
-ward:</code></pre>
-                     <p>After editing, simply run <code>/powertrims reload</code> to apply your changes!</p>
+            <div class="container">
+                <h2>Configuration Builder</h2>
+                <p class="section-subtitle">Customize every aspect of PowerTrims and download your personalized
+                    <code>config.yml</code> file.
+                </p>
+
+                <div class="config-builder animate-on-scroll">
+                    <!-- Controls -->
+                    <!-- Left Sidebar: Settings & Toggles -->
+                    <div class="config-sidebar">
+                        <h3>Global & Toggles</h3>
+
+                        <!-- Global Settings -->
+                        <div class="control-group">
+                            <h4>Global Settings</h4>
+                            <div class="config-input-group">
+                                <label>Config GUI Permission:</label>
+                                <input type="text" class="config-input" id="cfg-permission" value="powertrims.admin"
+                                    onchange="updateFullConfigPreview()">
+                            </div>
+                        </div>
+
+                        <!-- Enable/Disable Trims -->
+                        <div class="control-group">
+                            <h4>Enable/Disable Trims</h4>
+                            <div class="trim-toggles-grid">
+                                <div class="switch-row"><label>Sentry</label><label class="switch"><input
+                                            type="checkbox" id="trim-sentry" checked
+                                            onchange="updateFullConfigPreview()"><span class="slider"></span></label>
+                                </div>
+                                <div class="switch-row"><label>Silence</label><label class="switch"><input
+                                            type="checkbox" id="trim-silence" checked
+                                            onchange="updateFullConfigPreview()"><span class="slider"></span></label>
+                                </div>
+                                <div class="switch-row"><label>Vex</label><label class="switch"><input type="checkbox"
+                                            id="trim-vex" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Ward</label><label class="switch"><input type="checkbox"
+                                            id="trim-ward" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Wild</label><label class="switch"><input type="checkbox"
+                                            id="trim-wild" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Coast</label><label class="switch"><input type="checkbox"
+                                            id="trim-coast" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Dune</label><label class="switch"><input type="checkbox"
+                                            id="trim-dune" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Eye</label><label class="switch"><input type="checkbox"
+                                            id="trim-eye" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Host</label><label class="switch"><input type="checkbox"
+                                            id="trim-host" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Raiser</label><label class="switch"><input
+                                            type="checkbox" id="trim-raiser" checked
+                                            onchange="updateFullConfigPreview()"><span class="slider"></span></label>
+                                </div>
+                                <div class="switch-row"><label>Rib</label><label class="switch"><input type="checkbox"
+                                            id="trim-rib" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Snout</label><label class="switch"><input type="checkbox"
+                                            id="trim-snout" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Spire</label><label class="switch"><input type="checkbox"
+                                            id="trim-spire" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Tide</label><label class="switch"><input type="checkbox"
+                                            id="trim-tide" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Wayfinder</label><label class="switch"><input
+                                            type="checkbox" id="trim-wayfinder" checked
+                                            onchange="updateFullConfigPreview()"><span class="slider"></span></label>
+                                </div>
+                                <div class="switch-row"><label>Flow</label><label class="switch"><input type="checkbox"
+                                            id="trim-flow" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                                <div class="switch-row"><label>Bolt</label><label class="switch"><input type="checkbox"
+                                            id="trim-bolt" checked onchange="updateFullConfigPreview()"><span
+                                            class="slider"></span></label></div>
+                            </div>
+                        </div>
+
+                        <!-- Trim Configuration Accordions - Note: Full implementation continues below -->
+                    </div>
+
+                    <!-- Center Main: Detailed Config -->
+                    <div class="config-main">
+                        <h3
+                            style="margin-bottom: var(--spacing-md); position: sticky; top: 0; background: #131313; z-index: 5; padding: 10px 0;">
+                            Detailed Configuration</h3>
+
+                        <!-- Sentry Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('sentry')">
+                                <span>⚔️ Sentry Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-sentry">
+                                <div class="config-input-group">
+                                    <label>Arrow Count:</label>
+                                    <input type="number" class="config-input" id="sentry-arrow-count" value="3"
+                                        onchange="updateFullConfigPreview()">
+                                </div>
+                                <div class="config-input-group">
+                                    <label>Spread:</label>
+                                    <input type="number" class="config-input" id="sentry-spread" value="0.15"
+                                        step="0.01" onchange="updateFullConfigPreview()">
+                                </div>
+                                <div class="config-input-group">
+                                    <label>Cooldown (ms):</label>
+                                    <input type="number" class="config-input" id="sentry-cooldown" value="90000"
+                                        onchange="updateFullConfigPreview()">
+                                </div>
+                                <div class="config-input-group">
+                                    <label>True Damage:</label>
+                                    <input type="number" class="config-input" id="sentry-true-damage" value="0.5"
+                                        step="0.1" onchange="updateFullConfigPreview()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Silence Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('silence')">
+                                <span>🔇 Silence Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-silence">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Radius:</label><input type="number"
+                                        class="config-input" id="silence-radius" value="15.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Potion Duration (ticks):</label><input
+                                        type="number" class="config-input" id="silence-potion-duration" value="400"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Pearl Cooldown (ticks):</label><input
+                                        type="number" class="config-input" id="silence-pearl-cooldown" value="200"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Max Affected Entities:</label><input
+                                        type="number" class="config-input" id="silence-max-affected" value="30"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="silence-cooldown" value="90000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <h5 style="color: var(--mc-diamond); margin: var(--spacing-md) 0 var(--spacing-sm);">
+                                    Passive</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="silence-passive-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Echo Radius:</label><input type="number"
+                                        class="config-input" id="silence-echo-radius" value="6.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Effect Duration (ticks):</label><input
+                                        type="number" class="config-input" id="silence-effect-duration" value="300"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <h5 style="color: var(--mc-enchant); margin: var(--spacing-md) 0 var(--spacing-sm);">
+                                    Ultimate</h5>
+                                <div class="config-input-group"><label>Rage Per Hit Taken:</label><input type="number"
+                                        class="config-input" id="silence-rage-hit-taken" value="1.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Rage Per Hit Dealt:</label><input type="number"
+                                        class="config-input" id="silence-rage-hit-dealt" value="0.5" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Max Rage:</label><input type="number"
+                                        class="config-input" id="silence-max-rage" value="150.0" step="1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Warden Duration (seconds):</label><input
+                                        type="number" class="config-input" id="silence-warden-duration" value="40"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Warden Strength Level:</label><input
+                                        type="number" class="config-input" id="silence-warden-strength" value="2"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Warden Health Boost Level:</label><input
+                                        type="number" class="config-input" id="silence-warden-health-boost" value="4"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Warden Resistance Level:</label><input
+                                        type="number" class="config-input" id="silence-warden-resistance" value="1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Boom Cooldown (seconds):</label><input
+                                        type="number" class="config-input" id="silence-boom-cooldown" value="10"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Boom Damage:</label><input type="number"
+                                        class="config-input" id="silence-boom-damage" value="12"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Boom Length:</label><input type="number"
+                                        class="config-input" id="silence-boom-length" value="20.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Boom AOE Radius:</label><input type="number"
+                                        class="config-input" id="silence-boom-aoe-radius" value="3.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Grasp Cooldown (seconds):</label><input
+                                        type="number" class="config-input" id="silence-grasp-cooldown" value="15"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Grasp Radius:</label><input type="number"
+                                        class="config-input" id="silence-grasp-radius" value="25.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Grasp Strength:</label><input type="number"
+                                        class="config-input" id="silence-grasp-strength" value="2.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Vex Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('vex')">
+                                <span>👻 Vex Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-vex">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="vex-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Radius:</label><input type="number"
+                                        class="config-input" id="vex-radius" value="30.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Damage:</label><input type="number"
+                                        class="config-input" id="vex-damage" value="8.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Debuff Duration (ticks):</label><input
+                                        type="number" class="config-input" id="vex-debuff-duration" value="400"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Blindness Duration (ticks):</label><input
+                                        type="number" class="config-input" id="vex-blindness-duration" value="100"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <h5 style="color: var(--mc-diamond); margin: var(--spacing-md) 0 var(--spacing-sm);">
+                                    Passive</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="vex-passive-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Hide Duration (ticks):</label><input
+                                        type="number" class="config-input" id="vex-hide-duration" value="200"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Health Threshold:</label><input type="number"
+                                        class="config-input" id="vex-health-threshold" value="8.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Ward Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('ward')">
+                                <span>🛡️ Ward Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-ward">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Barrier Duration (ticks):</label><input
+                                        type="number" class="config-input" id="ward-barrier-duration" value="200"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Absorption Level:</label><input type="number"
+                                        class="config-input" id="ward-absorption-level" value="4"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Resistance Boost Level:</label><input
+                                        type="number" class="config-input" id="ward-resistance-level" value="2"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="ward-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Wild Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('wild')">
+                                <span>🌿 Wild Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-wild">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="wild-cooldown" value="20000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Poison Duration (ticks):</label><input
+                                        type="number" class="config-input" id="wild-poison-duration" value="200"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Grapple Range:</label><input type="number"
+                                        class="config-input" id="wild-grapple-range" value="60.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Grapple Speed:</label><input type="number"
+                                        class="config-input" id="wild-grapple-speed" value="1.8" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <h5 style="color: var(--mc-diamond); margin: var(--spacing-md) 0 var(--spacing-sm);">
+                                    Passive</h5>
+                                <div class="config-input-group"><label>Cooldown (seconds):</label><input type="number"
+                                        class="config-input" id="wild-passive-cooldown" value="20"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Trigger Health:</label><input type="number"
+                                        class="config-input" id="wild-trigger-health" value="8"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Root Trap Radius XZ:</label><input type="number"
+                                        class="config-input" id="wild-root-radius-xz" value="5.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Root Trap Radius Y:</label><input type="number"
+                                        class="config-input" id="wild-root-radius-y" value="3.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Root Trap Duration (ticks):</label><input
+                                        type="number" class="config-input" id="wild-root-duration" value="200"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <h5 style="color: var(--mc-enchant); margin: var(--spacing-md) 0 var(--spacing-sm);">
+                                    Ultimate</h5>
+                                <div class="config-input-group"><label>Duration (seconds):</label><input type="number"
+                                        class="config-input" id="wild-ult-duration" value="15"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Scale Multiplier:</label><input type="number"
+                                        class="config-input" id="wild-scale-multiplier" value="1.3" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Max Health:</label><input type="number"
+                                        class="config-input" id="wild-max-health" value="30.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Tether Radius:</label><input type="number"
+                                        class="config-input" id="wild-tether-radius" value="12.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Coast Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('coast')">
+                                <span>🌊 Coast Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-coast">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Water Burst Radius:</label><input type="number"
+                                        class="config-input" id="coast-water-burst-radius" value="30"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Water Burst Damage:</label><input type="number"
+                                        class="config-input" id="coast-water-burst-damage" value="10"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Water Burst Cooldown (ms):</label><input
+                                        type="number" class="config-input" id="coast-water-burst-cooldown" value="60000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Pull Duration (ticks):</label><input
+                                        type="number" class="config-input" id="coast-pull-duration" value="60"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Debuff Duration (ticks):</label><input
+                                        type="number" class="config-input" id="coast-debuff-duration" value="80"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Buff Duration (ticks):</label><input
+                                        type="number" class="config-input" id="coast-buff-duration" value="100"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Weakness Amplifier:</label><input type="number"
+                                        class="config-input" id="coast-weakness-amplifier" value="1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Slowness Amplifier:</label><input type="number"
+                                        class="config-input" id="coast-slowness-amplifier" value="1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Speed Amplifier:</label><input type="number"
+                                        class="config-input" id="coast-speed-amplifier" value="1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Resistance Amplifier:</label><input type="number"
+                                        class="config-input" id="coast-resistance-amplifier" value="0"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Dune Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('dune')">
+                                <span>🏜️ Dune Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-dune">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="dune-cooldown" value="60000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Duration (ticks):</label><input type="number"
+                                        class="config-input" id="dune-duration" value="200"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Height:</label><input type="number"
+                                        class="config-input" id="dune-height" value="15.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Pull Strength:</label><input type="number"
+                                        class="config-input" id="dune-pull-strength" value="0.5" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Lift Strength:</label><input type="number"
+                                        class="config-input" id="dune-lift-strength" value="0.6" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Damage Per Second:</label><input type="number"
+                                        class="config-input" id="dune-damage-per-second" value="2.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Eye Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('eye')">
+                                <span>👁️ Eye Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-eye">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>True Sight Radius:</label><input type="number"
+                                        class="config-input" id="eye-true-sight-radius" value="80.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>True Sight Duration (ticks):</label><input
+                                        type="number" class="config-input" id="eye-true-sight-duration" value="600"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="eye-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Task Interval (ticks):</label><input
+                                        type="number" class="config-input" id="eye-task-interval" value="20"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>True Sight Vertical Radius:</label><input
+                                        type="number" class="config-input" id="eye-vertical-radius" value="50.0"
+                                        step="0.1" onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Host Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('host')">
+                                <span>🧛 Host Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-host">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="host-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Effect Steal Radius:</label><input type="number"
+                                        class="config-input" id="host-effect-steal-radius" value="10.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Health Steal Amount:</label><input type="number"
+                                        class="config-input" id="host-health-steal-amount" value="4.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Particle Density:</label><input type="number"
+                                        class="config-input" id="host-particle-density" value="4.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Raiser Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('raiser')">
+                                <span>☠️ Raiser Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-raiser">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="raiser-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Entity Pull Radius:</label><input type="number"
+                                        class="config-input" id="raiser-entity-pull-radius" value="15.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Player Upward Boost:</label><input type="number"
+                                        class="config-input" id="raiser-player-upward-boost" value="1.5" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Pearl Cooldown (ticks):</label><input
+                                        type="number" class="config-input" id="raiser-pearl-cooldown" value="200"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Rib Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('rib')">
+                                <span>🦴 Rib Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-rib">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="rib-cooldown" value="60000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Minion Lifespan (ticks):</label><input
+                                        type="number" class="config-input" id="rib-minion-lifespan" value="1200"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Snout Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('snout')">
+                                <span>🐷 Snout Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-snout">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="snout-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Minion Lifespan (ticks):</label><input
+                                        type="number" class="config-input" id="snout-minion-lifespan" value="1800"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Spire Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('spire')">
+                                <span>⛰️ Spire Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-spire">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Dash Distance:</label><input type="number"
+                                        class="config-input" id="spire-dash-distance" value="8.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Dash Speed:</label><input type="number"
+                                        class="config-input" id="spire-dash-speed" value="2.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Knockback Strength:</label><input type="number"
+                                        class="config-input" id="spire-knockback-strength" value="1.5" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Slow Duration (ticks):</label><input
+                                        type="number" class="config-input" id="spire-slow-duration" value="60"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Vulnerable Duration (ticks):</label><input
+                                        type="number" class="config-input" id="spire-vulnerable-duration" value="100"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Damage Amplification:</label><input type="number"
+                                        class="config-input" id="spire-damage-amplification" value="0.6" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="spire-cooldown" value="30000"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tide Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('tide')">
+                                <span>🌀 Tide Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-tide">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="tide-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Wave Width:</label><input type="number"
+                                        class="config-input" id="tide-wave-width" value="3.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Effect Duration (ticks):</label><input
+                                        type="number" class="config-input" id="tide-effect-duration" value="300"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Knockback Strength:</label><input type="number"
+                                        class="config-input" id="tide-knockback-strength" value="1.8" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Wall Height:</label><input type="number"
+                                        class="config-input" id="tide-wall-height" value="6"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Move Delay (ticks):</label><input type="number"
+                                        class="config-input" id="tide-move-delay" value="2"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Max Moves:</label><input type="number"
+                                        class="config-input" id="tide-max-moves" value="20"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Wayfinder Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('wayfinder')">
+                                <span>🧭 Wayfinder Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-wayfinder">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="wayfinder-cooldown" value="120000"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Flow Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('flow')">
+                                <span>💧 Flow Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-flow">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Heart Cost Interval (ticks):</label><input
+                                        type="number" class="config-input" id="flow-heart-cost-interval" value="20"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Heart Cost Amount:</label><input type="number"
+                                        class="config-input" id="flow-heart-cost-amount" value="2.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="flow-cooldown" value="60000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Duration (ticks):</label><input type="number"
+                                        class="config-input" id="flow-duration" value="400"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bolt Accordion -->
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion('bolt')">
+                                <span>⚡ Bolt Configuration</span>
+                                <span class="accordion-icon">▼</span>
+                            </button>
+                            <div class="accordion-content" id="accordion-bolt">
+                                <h5 style="color: var(--mc-diamond); margin-bottom: var(--spacing-sm);">Primary</h5>
+                                <div class="config-input-group"><label>Cooldown (ms):</label><input type="number"
+                                        class="config-input" id="bolt-cooldown" value="20000"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Chain Range:</label><input type="number"
+                                        class="config-input" id="bolt-chain-range" value="10"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Max Chains:</label><input type="number"
+                                        class="config-input" id="bolt-max-chains" value="3"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Initial Damage:</label><input type="number"
+                                        class="config-input" id="bolt-initial-damage" value="6.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Subsequent Damage:</label><input type="number"
+                                        class="config-input" id="bolt-subsequent-damage" value="4.0" step="0.1"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Target Range:</label><input type="number"
+                                        class="config-input" id="bolt-target-range" value="20"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Weakness Duration (ticks):</label><input
+                                        type="number" class="config-input" id="bolt-weakness-duration" value="100"
+                                        onchange="updateFullConfigPreview()"></div>
+                                <div class="config-input-group"><label>Weakness Amplifier:</label><input type="number"
+                                        class="config-input" id="bolt-weakness-amplifier" value="0"
+                                        onchange="updateFullConfigPreview()"></div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="config-block">
-                     <h4>Ability Settings</h4>
-                     <p>Change the specific stats for each ability, like damage, radius, and cooldown. All time values are in "ticks" (20 ticks = 1 second).</p>
-                     <pre><code># Example for Sentry trim:
-sentry:
-primary:
-arrow_count: 3
-spread: 0.15
-cooldown: 90000
-true_damage: 0.5</code></pre>
-                    <p>After saving changes, run <code>/powertrims reload</code> in the console for them to take effect. Some changes may require a server restart.</p>
+                <!-- Preview -->
+                <div class="config-preview">
+                    <div class="preview-header">
+                        <button class="copy-btn" onclick="copyConfig()">COPY</button>
+                        <button class="download-btn" onclick="downloadConfig()">DOWNLOAD</button>
+                    </div>
+                    <pre id="yaml-output"># Configuration will appear here</pre>
                 </div>
+            </div>
 
-                <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a></div>
-             </div>
+            <div style="text-align:center; margin-top:40px;"><a class="btn pagelink" href="#home">Back to Home</a>
+            </div>
+            </div>
         </section>
     </main>
 
@@ -418,7 +1991,71 @@ true_damage: 0.5</code></pre>
     </footer>
 
     <script>
+        // Global functions for Filter interaction
+        function filterSelection(category) {
+            const cards = document.querySelectorAll('.card-link-wrapper');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            // Update Active Button
+            btns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) || (category === 'all' && btn.textContent.includes('All'))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Filter Cards
+            cards.forEach(card => {
+                const cardCategories = card.getAttribute('data-category');
+                if (category === 'all' || cardCategories.includes(category)) {
+                    card.style.display = 'contents'; // Show
+                } else {
+                    card.style.display = 'none'; // Hide
+                }
+            });
+        }
+
+        function searchAbilities() {
+            const input = document.getElementById('abilitySearch');
+            const filter = input.value.toUpperCase();
+            const cards = document.querySelectorAll('.card-link-wrapper');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').innerText;
+                if (title.toUpperCase().indexOf(filter) > -1) {
+                    card.style.display = 'contents';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Mobile Nav Logic
+        function toggleMobileNav() {
+            const drawer = document.querySelector('.mobile-nav-drawer');
+            const overlay = document.querySelector('.mobile-nav-overlay');
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Scroll Animation Observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            scrollElements.forEach(el => observer.observe(el));
+
             const pages = document.querySelectorAll('.page');
             const navLinks = document.querySelectorAll('.pagelink');
 
@@ -430,16 +2067,16 @@ true_damage: 0.5</code></pre>
                 pages.forEach(page => {
                     page.classList.toggle('active', page.id === 'page-' + pageId);
                 });
-                
+
                 window.scrollTo(0, 0);
             }
 
             function handleRouteChange() {
                 const allowedPages = ['home', 'abilities', 'rituals', 'config', 'download', 'community', 'general'];
                 const trimPages = ['sentry', 'silence', 'vex', 'ward', 'wild', 'coast', 'dune', 'eye', 'host', 'raiser', 'rib', 'snout', 'spire', 'tide', 'wayfinder', 'flow', 'bolt'];
-                
+
                 let hash = window.location.hash.substring(1);
-                
+
                 if (hash.startsWith('trim-')) {
                     const trimName = hash.substring(5);
                     if (!trimPages.includes(trimName)) {
@@ -459,10 +2096,11 @@ true_damage: 0.5</code></pre>
                     window.location.hash = pageId;
                 });
             });
-            
+
             window.addEventListener('hashchange', handleRouteChange);
             handleRouteChange(); // Initial page load
         });
     </script>
 </body>
+
 </html>

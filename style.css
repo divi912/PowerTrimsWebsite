@@ -1,0 +1,1883 @@
+/* ============================================================================
+   POWERTRIMS - PROFESSIONAL MINECRAFT-THEMED WEBSITE
+   ============================================================================ */
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.cdnfonts.com/css/minecraft-4');
+
+/* ============================================================================
+   DESIGN SYSTEM - COLOR PALETTE
+   ============================================================================ */
+:root {
+    /* Core Backgrounds */
+    --bg-primary: #0D0D0D;
+    --bg-secondary: #1A1A1A;
+    --bg-elevated: #242424;
+    --bg-card: rgba(30, 30, 30, 0.8);
+
+    /* Minecraft-Inspired Accent Colors (Balanced) */
+    --mc-grass: #5C8A3D;
+    --mc-grass-light: #6FA34D;
+    --mc-stone: #7F7F7F;
+    --mc-diamond: #5DADE2;
+    --mc-diamond-bright: #85C1E9;
+    --mc-gold: #F1C40F;
+    --mc-gold-light: #F4D03F;
+    --mc-redstone: #DC3545;
+    --mc-enchant: #A569BD;
+
+    /* UI Colors */
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --text-muted: #808080;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-emphasis: rgba(255, 255, 255, 0.15);
+
+    /* Effects */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --glow-diamond: 0 0 20px rgba(93, 173, 226, 0.3);
+    --glow-grass: 0 0 20px rgba(92, 138, 61, 0.3);
+
+    /* Typography */
+    --font-brand: 'Press Start 2P', monospace;
+    --font-heading: 'Minecraft', 'Press Start 2P', monospace;
+    --font-body: system-ui, -apple-system, sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+
+    /* Border Radius - Minecraft is BLOCKY! */
+    --radius-sm: 0px;
+    --radius-md: 2px;
+    --radius-lg: 2px;
+}
+
+/* ============================================================================
+   RESET & BASE STYLES
+   ============================================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg-primary) url('assets/wallpaper_minecraft_pc_bundle_2560x1440.png') center/cover fixed no-repeat;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Optional: Subtle pixel grid overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 13, 13, 0.92);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-primary);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
+    font-weight: 400;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    letter-spacing: 1px;
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.8);
+    margin-bottom: var(--spacing-xl);
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-secondary);
+    max-width: 65ch;
+    line-height: 1.8;
+}
+
+a {
+    color: var(--mc-diamond);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--mc-diamond-bright);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-elevated);
+    border: 2px solid var(--bg-primary);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--mc-grass);
+}
+
+::selection {
+    background: var(--mc-diamond);
+    color: var(--bg-primary);
+}
+
+/* ============================================================================
+   LAYOUT UTILITIES
+   ============================================================================ */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.section {
+    padding: var(--spacing-2xl) 0;
+}
+
+/* ============================================================================
+   NAVIGATION
+   ============================================================================ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 1000;
+    padding: var(--spacing-sm) 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-brand);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+}
+
+/* Config Builder */
+.config-builder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: rgba(26, 20, 15, 0.4);
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.config-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.config-controls h3 {
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    color: var(--mc-gold);
+}
+
+.control-group {
+    background: rgba(58, 58, 58, 0.5);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    box-shadow:
+        inset -2px -2px 0 0 #1A1A1A,
+        inset 2px 2px 0 0 #5A5A5A;
+}
+
+.control-group h4 {
+    margin-bottom: var(--spacing-md);
+    font-size: 1rem;
+    color: var(--mc-diamond);
+}
+
+.switch-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--spacing-sm) 0;
+    padding: var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.control-group input[type="range"] {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555;
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--mc-grass);
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+/* Config Builder Layout - 3 Column Dashboard */
+.config-content .container {
+    max-width: 95vw;
+    /* Wider container for dashboard */
+    padding: 0 var(--spacing-sm);
+}
+
+.config-builder {
+    display: grid;
+    grid-template-columns: 320px 1fr 400px;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    align-items: start;
+    height: 85vh;
+    /* Fixed viewport height */
+    overflow: hidden;
+    /* Prevent body scroll */
+}
+
+/* 1. Left Sidebar (Global Settings & Toggles) */
+.config-sidebar {
+    background: rgba(26, 20, 15, 0.6);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    height: 100%;
+    overflow-y: auto;
+    /* Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--mc-gold) rgba(26, 20, 15, 0.5);
+}
+
+.trim-toggles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Single column for sidebar */
+    gap: var(--spacing-xs);
+}
+
+/* 2. Main Content (Detailed Accordions) */
+.config-main {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: var(--spacing-sm);
+    /* Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--mc-diamond) rgba(26, 20, 15, 0.5);
+}
+
+.config-main h3 {
+    margin-bottom: var(--spacing-md);
+    color: var(--mc-diamond);
+    font-family: var(--font-heading);
+    text-shadow: 2px 2px 0 #000;
+}
+
+/* Scrollbar Styles */
+
+
+.config-sidebar::-webkit-scrollbar,
+.config-main::-webkit-scrollbar {
+    width: 6px;
+}
+
+.config-sidebar::-webkit-scrollbar-track,
+.config-main::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.config-sidebar::-webkit-scrollbar-thumb,
+.config-main::-webkit-scrollbar-thumb {
+    background: var(--mc-stone);
+    border-radius: 4px;
+}
+
+.config-sidebar::-webkit-scrollbar-thumb:hover,
+.config-main::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+
+
+.global-settings {
+    background: rgba(26, 20, 15, 0.7);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--mc-gold);
+    box-shadow:
+        inset -2px -2px 0 0 #1A1A1A,
+        inset 2px 2px 0 0 rgba(212, 175, 55, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+}
+
+/* Config Preview */
+.config-preview {
+    display: flex;
+    flex-direction: column;
+    background: rgba(26, 20, 15, 0.6);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-sm);
+    position: sticky;
+    top: var(--spacing-md);
+    max-height: 85vh;
+    overflow: hidden;
+    box-shadow:
+        inset -2px -2px 0 0 #1A1A1A,
+        inset 2px 2px 0 0 #5A5A5A;
+}
+
+.copy-btn {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    padding: 8px 16px;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    background: var(--mc-grass);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    box-shadow:
+        inset -2px -2px 0 0 #2D5016,
+        inset 2px 2px 0 0 #8BD480;
+    transition: background 0.2s ease;
+}
+
+.copy-btn:hover {
+    background: var(--mc-grass-light);
+}
+
+.copy-btn:active {
+    box-shadow:
+        inset 2px 2px 0 0 #2D5016,
+        inset -2px -2px 0 0 #8BD480;
+}
+
+#yaml-output {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    background: rgba(0, 0, 0, 0.4);
+    padding: var(--spacing-lg);
+    flex: 1;
+    overflow-y: auto;
+    /* Custom scrollbar for YAML output */
+    scrollbar-width: thin;
+    scrollbar-color: var(--mc-diamond) rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    white-space: pre;
+    margin-top: var(--spacing-md);
+    border: 1px solid var(--border-subtle);
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Accordion Styles */
+.accordion-item {
+    margin-bottom: var(--spacing-sm);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: rgba(58, 58, 58, 0.3);
+    overflow: hidden;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: rgba(70, 70, 70, 0.5);
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-align: left;
+}
+
+.accordion-header:hover {
+    background: rgba(80, 80, 80, 0.6);
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 var(--spacing-md);
+}
+
+.accordion-content.active {
+    max-height: 1000px;
+    padding: var(--spacing-md);
+}
+
+/* Config Input Groups */
+.config-input-group {
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.config-input-group label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.config-input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    transition: border-color 0.2s ease;
+}
+
+.config-input:focus {
+    outline: none;
+    border-color: var(--mc-grass);
+}
+
+/* Trim Toggles Grid */
+.trim-toggles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+/* Preview Header */
+.preview-header {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.download-btn {
+    padding: 8px 16px;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    background: var(--mc-diamond);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    box-shadow:
+        inset -2px -2px 0 0 #2E5F88,
+        inset 2px 2px 0 0 #A8D8F0;
+    transition: background 0.2s ease;
+}
+
+.download-btn:hover {
+    background: var(--mc-diamond-bright);
+}
+
+.download-btn:active {
+    box-shadow:
+        inset 2px 2px 0 0 #2E5F88,
+        inset -2px -2px 0 0 #A8D8F0;
+}
+
+/* ============================================================================
+   NAVIGATION
+   ============================================================================ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 2px solid var(--border-subtle);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.nav-logo {
+    font-family: var(--font-brand);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+    color: var(--mc-grass-light);
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-lg);
+    list-style: none;
+}
+
+.nav-links a {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.nav-cta {
+    color: var(--mc-gold) !important;
+}
+
+.nav-cta:hover {
+    color: var(--mc-gold-light) !important;
+}
+
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Mobile Navigation */
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+}
+
+.mobile-nav-drawer {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background: var(--bg-secondary);
+    border-left: 1px solid var(--border-subtle);
+    z-index: 999;
+    padding: var(--spacing-lg);
+    transition: right 0.3s ease;
+}
+
+.mobile-nav-drawer.active {
+    right: 0;
+}
+
+.mobile-nav-header {
+    font-family: var(--font-brand);
+    font-size: 0.8rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+/* ============================================================================
+   BUTTONS - MINECRAFT STONE STYLE
+   ============================================================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    color: var(--text-primary);
+    background: #8B8B8B;
+
+    /* Minecraft 3D Border Effect */
+    box-shadow:
+        inset -2px -2px 0 0 #373737,
+        inset 2px 2px 0 0 #FFFFFF,
+        inset -3px -3px 0 0 #555555,
+        inset 3px 3px 0 0 #C6C6C6;
+
+    transition: none;
+    image-rendering: pixelated;
+}
+
+.btn:hover {
+    background: #A0A0A0;
+    box-shadow:
+        inset -2px -2px 0 0 #404040,
+        inset 2px 2px 0 0 #FFFFFF,
+        inset -3px -3px 0 0 #5F5F5F,
+        inset 3px 3px 0 0 #D6D6D6;
+}
+
+.btn:active {
+    background: #7A7A7A;
+    box-shadow:
+        inset 2px 2px 0 0 #373737,
+        inset -2px -2px 0 0 #FFFFFF,
+        inset 3px 3px 0 0 #555555,
+        inset -3px -3px 0 0 #C6C6C6;
+}
+
+.btn.primary {
+    background: #5FAD56;
+    box-shadow:
+        inset -2px -2px 0 0 #2D5016,
+        inset 2px 2px 0 0 #8BD480,
+        inset -3px -3px 0 0 #3E6B23,
+        inset 3px 3px 0 0 #7BC36F;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn.primary:hover {
+    background: #6FBD66;
+    box-shadow:
+        inset -2px -2px 0 0 #376020,
+        inset 2px 2px 0 0 #9BE490,
+        inset -3px -3px 0 0 #4E7B33,
+        inset 3px 3px 0 0 #8BD37F;
+}
+
+.btn.primary:active {
+    background: #4F9D46;
+    box-shadow:
+        inset 2px 2px 0 0 #2D5016,
+        inset -2px -2px 0 0 #8BD480,
+        inset 3px 3px 0 0 #3E6B23,
+        inset -3px -3px 0 0 #7BC36F;
+}
+
+.btn.secondary {
+    background: #565656;
+    box-shadow:
+        inset -2px -2px 0 0 #1F1F1F,
+        inset 2px 2px 0 0 #8E8E8E,
+        inset -3px -3px 0 0 #2E2E2E,
+        inset 3px 3px 0 0 #7E7E7E;
+    color: #CCCCCC;
+}
+
+.btn.secondary:hover {
+    background: #666666;
+    box-shadow:
+        inset -2px -2px 0 0 #2A2A2A,
+        inset 2px 2px 0 0 #9E9E9E,
+        inset -3px -3px 0 0 #3A3A3A,
+        inset -3px -3px 0 0 #8E8E8E;
+}
+
+/* ============================================================================
+   HERO SECTION
+   ============================================================================ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(80px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle animated background */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(93, 173, 226, 0.05) 0%, transparent 50%);
+    animation: slowRotate 30s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes slowRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+.hero-content-centered {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+.hero-text h1,
+.hero-content-centered h1 {
+    margin-bottom: var(--spacing-lg);
+    font-family: var(--font-brand);
+    letter-spacing: 3px;
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
+    color: var(--text-primary);
+}
+
+/* Removed typewriter subtitle - keeping design clean */
+
+.subtitle {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-btns {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-xl);
+}
+
+/* Hero Visual */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.minecraft-showcase {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Minecraft Item Floating Animation */
+.mc-item {
+    position: absolute;
+    font-size: 4rem;
+    filter: drop-shadow(0 0 20px rgba(93, 173, 226, 0.6));
+    animation: mcItemFloat 3s ease-in-out infinite;
+    user-select: none;
+}
+
+.helmet {
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.chestplate {
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.leggings {
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.boots {
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes mcItemFloat {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0) rotate(0deg);
+    }
+
+    25% {
+        transform: translateX(-50%) translateY(-15px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateX(-50%) translateY(-8px) rotate(5deg);
+    }
+}
+
+/* Enchantment Sparkle Particles */
+.enchant-particle {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: enchantSparkle 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes enchantSparkle {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.5) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-100px) scale(1.2) rotate(180deg);
+    }
+}
+
+/* Diamond Ore Glow Effect */
+.mc-ore-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(93, 173, 226, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulseGlow 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* ============================================================================
+   FEATURE STRIP
+   ============================================================================ */
+.features-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    width: 100%;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.feature-card:hover::before {
+    transform: translateX(100%);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-emphasis);
+    box-shadow: var(--shadow-md);
+}
+
+.feature-card h4 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.feature-card.span-2 {
+    grid-column: span 2;
+}
+
+/* ============================================================================
+   CARDS & GRID LAYOUTS
+   ============================================================================ */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.card {
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: var(--mc-grass);
+    box-shadow: var(--shadow-lg), var(--glow-grass);
+}
+
+.card h3 {
+    color: var(--mc-grass-light);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+}
+
+.card p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* ============================================================================
+   ABILITY CARDS - AUTHENTIC MINECRAFT ITEM FRAME
+   ============================================================================ */
+.ability-card {
+    background:
+        /* Dark leather/map backing (like actual item frames) */
+        linear-gradient(135deg,
+            #3E2F23 0%,
+            #4A3528 25%,
+            #3E2F23 50%,
+            #32291F 75%,
+            #3E2F23 100%);
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    transition: transform 0.15s ease-out;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 12px;
+
+    /* Spruce/Dark Oak wood border (darker than oak) */
+    box-shadow:
+        /* Inner shadow (recessed) */
+        inset 3px 3px 0 0 #3B2A1A,
+        inset -3px -3px 0 0 #1F1610,
+        /* Wood highlights */
+        inset 6px 6px 0 0 #6B4E3D,
+        inset -6px -6px 0 0 #2D1F15,
+        /* Frame depth */
+        0 6px 0 0 #1A120D,
+        /* Outer shadow */
+        0 8px 16px rgba(0, 0, 0, 0.7);
+
+    /* Subtle wood grain texture */
+    background-image:
+        repeating-linear-gradient(90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.1) 2px,
+            rgba(0, 0, 0, 0.1) 4px),
+        linear-gradient(135deg, #3E2F23 0%, #4A3528 50%, #3E2F23 100%);
+}
+
+/* Inner content container - darker for contrast */
+.ability-card .card-header,
+.ability-card .card-body {
+    background: rgba(15, 12, 10, 0.6);
+    box-shadow:
+        inset 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Enchantment particle glow on hover */
+.ability-card::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle at 50% 50%, rgba(170, 0, 170, 0.25), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.ability-card:hover::before {
+    opacity: 1;
+    animation: enchantmentGlow 2s ease-in-out infinite;
+}
+
+.ability-card:hover {
+    transform: translateY(-8px) rotateZ(1deg);
+    box-shadow:
+        /* Brightened wooden frame on hover */
+        inset 3px 3px 0 0 #4B3A2A,
+        inset -3px -3px 0 0 #2F2620,
+        inset 6px 6px 0 0 #7B5E4D,
+        inset -6px -6px 0 0 #3D2F25,
+        /* Larger depth shadow */
+        0 8px 0 0 #1A120D,
+        /* Enhanced glow */
+        0 12px 24px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.card-header {
+    padding: var(--spacing-lg);
+    background: linear-gradient(180deg,
+            rgba(20, 16, 12, 0.6) 0%,
+            rgba(26, 20, 15, 0.5) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    border-bottom: 2px solid rgba(61, 47, 31, 0.6);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.armor-icon {
+    width: 80px;
+    height: 80px;
+    background: url('assets/helmet.png') center/contain no-repeat;
+    position: relative;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    animation: floatingItem 3s ease-in-out infinite;
+}
+
+
+@keyframes enchantPulse {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Individual Trim Icon Classes */
+.armor-icon.trim-sentry {
+    background: url('assets/sentry_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-silence {
+    background: url('assets/silence_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-vex {
+    background: url('assets/vex_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-ward {
+    background: url('assets/ward_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-wild {
+    background: url('assets/wild_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-coast {
+    background: url('assets/coast_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-dune {
+    background: url('assets/dune_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-eye {
+    background: url('assets/eye_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-host {
+    background: url('assets/host_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-raiser {
+    background: url('assets/raiser_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-rib {
+    background: url('assets/rib_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-snout {
+    background: url('assets/snout_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-shaper {
+    background: url('assets/shaper_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-spire {
+    background: url('assets/spire_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-tide {
+    background: url('assets/tide_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-wayfinder {
+    background: url('assets/wayfinder_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-flow {
+    background: url('assets/flow_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.armor-icon.trim-bolt {
+    background: url('assets/bolt_armor_trim_smithing_template.png') center/contain no-repeat;
+}
+
+.card-body {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Badges */
+.badge {
+    align-self: center;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid;
+    border-radius: var(--radius-sm);
+}
+
+.badge.offensive {
+    color: var(--mc-redstone);
+    background: rgba(220, 53, 69, 0.1);
+    border-color: rgba(220, 53, 69, 0.3);
+}
+
+.badge.defensive {
+    color: var(--mc-diamond);
+    background: rgba(93, 173, 226, 0.1);
+    border-color: rgba(93, 173, 226, 0.3);
+}
+
+.badge.mobility {
+    color: var(--mc-grass-light);
+    background: rgba(111, 163, 77, 0.1);
+    border-color: rgba(111, 163, 77, 0.3);
+}
+
+.badge.utility {
+    color: var(--mc-gold);
+    background: rgba(241, 196, 15, 0.1);
+    border-color: rgba(241, 196, 15, 0.3);
+}
+
+.badge.summoning {
+    color: var(--mc-enchant);
+    background: rgba(165, 105, 189, 0.1);
+    border-color: rgba(165, 105, 189, 0.3);
+}
+
+/* Stats */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px dashed var(--border-subtle);
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ============================================================================
+   TABLES
+   ============================================================================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-lg) 0;
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+th {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--mc-diamond);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+td {
+    color: var(--text-secondary);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    background: var(--bg-elevated);
+    color: var(--mc-grass-light);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    font-size: 0.9em;
+}
+
+pre {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    overflow-x: auto;
+    margin: var(--spacing-lg) 0;
+}
+
+pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-secondary);
+}
+
+/* ============================================================================
+   PAGE SYSTEM
+   ============================================================================ */
+.page {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section.page {
+    padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+.footer {
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+    margin-top: var(--spacing-2xl);
+}
+
+.footer p {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-md);
+}
+
+/* ============================================================================
+   SCROLL ANIMATIONS
+   ============================================================================ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================================================
+   FILTER BAR & SEARCH
+   ============================================================================ */
+.filter-bar {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: #6B6B6B;
+    color: var(--text-secondary);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: none;
+
+    /* Minecraft button style */
+    box-shadow:
+        inset -2px -2px 0 0 #2A2A2A,
+        inset 2px 2px 0 0 #9B9B9B,
+        inset -3px -3px 0 0 #1A1A1A,
+        inset 3px 3px 0 0 #8B8B8B;
+}
+
+.filter-btn:hover {
+    background: #7B7B7B;
+    color: var(--text-primary);
+    box-shadow:
+        inset -2px -2px 0 0 #3A3A3A,
+        inset 2px 2px 0 0 #ABABAB,
+        inset -3px -3px 0 0 #2A2A2A,
+        inset 3px 3px 0 0 #9B9B9B;
+}
+
+.filter-btn.active {
+    background: #5FAD56;
+    color: #FFFFFF;
+    box-shadow:
+        inset -2px -2px 0 0 #2D5016,
+        inset 2px 2px 0 0 #8BD480,
+        inset -3px -3px 0 0 #3E6B23,
+        inset 3px 3px 0 0 #7BC36F;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.search-input {
+    padding: 10px 16px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.2s ease;
+    min-width: 200px;
+}
+
+.search-input:focus {
+    border-color: var(--mc-diamond);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.card-hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.ability-card:hover .card-hover-overlay {
+    opacity: 1;
+}
+
+.overlay-text {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--mc-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .minecraft-showcase {
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+    }
+
+    .mobile-nav-overlay {
+        display: block;
+    }
+
+    .features-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card.span-2 {
+        grid-column: auto;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .config-builder {
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: visible;
+    }
+
+    .config-content .container {
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+    }
+
+    /* Change order for mobile flow */
+    .config-sidebar {
+        order: 1;
+        height: auto;
+        max-height: 400px;
+        /* Limit height slightly so user sees content below */
+        margin-bottom: var(--spacing-md);
+    }
+
+    .config-main {
+        order: 2;
+        height: auto;
+        overflow: visible;
+    }
+
+    .config-main h3 {
+        position: static !important;
+        /* Unstick header */
+    }
+
+    .config-preview {
+        order: 3;
+        height: auto;
+        max-height: 60vh;
+        position: static;
+        margin-top: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --spacing-lg: 1.5rem;
+        --spacing-xl: 2rem;
+        --spacing-2xl: 3rem;
+    }
+
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+/* Recipe Editor Updates */
+.slot-image {
+    width: 40px;
+    height: 40px;
+    image-rendering: pixelated;
+    object-fit: contain;
+}
+
+.crafting-slot[draggable="true"] {
+    cursor: grab;
+}
+
+.crafting-slot[draggable="true"]:active {
+    cursor: grabbing;
+}
+
+.slot-icon-fallback {
+    font-size: 24px;
+}
+
+/* Ensure count is visible over image */
+.slot-count {
+    z-index: 10;
+    text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* ============================================================================ 
+   RITUAL RECIPE EDITOR (MINECRAFT STYLE)
+   ============================================================================ */
+.recipe-editor-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+}
+
+.crafting-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background-color: #C6C6C6;
+    border: 3px solid #373737;
+    padding: 10px;
+    box-shadow: inset 2px 2px 0px #FFF, inset -2px -2px 0px #555;
+    width: fit-content;
+}
+
+.crafting-slot {
+    width: 64px;
+    height: 64px;
+    background-color: #8B8B8B;
+    border: 2px solid #373737;
+    border-right-color: #FFF;
+    border-bottom-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: background-color 0.1s;
+}
+
+.crafting-slot:hover {
+    background-color: #9C9C9C;
+}
+
+.slot-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.slot-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.slot-name {
+    font-size: 9px;
+    /* Very small to fit */
+    color: #FFF;
+    text-shadow: 1px 1px 0 #000;
+    text-align: center;
+    width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+}
+
+.slot-count {
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    color: #FFF;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 2px 2px 0 #000;
+    pointer-events: none;
+}
+
+.recipe-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-small {
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-family: var(--font-body);
+    background: #777;
+    border: 2px solid #000;
+    color: #FFF;
+    border-top-color: #AAA;
+    border-left-color: #AAA;
+    cursor: pointer;
+}
+
+.btn-small:hover {
+    background: #888;
+}
+
+.btn-small:active {
+    border-top-color: #000;
+    border-left-color: #000;
+    border-bottom-color: #AAA;
+    border-right-color: #AAA;
+}
