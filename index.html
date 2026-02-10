@@ -10,6 +10,15 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/minecraft-animations.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/index.min.js"></script>
+    <script>
+        // Polyfill for mobile drag and drop
+        var MobileDragDrop = MobileDragDrop || {};
+        MobileDragDrop.polyfill({
+            dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride
+        });
+    </script>
     <script src="config-builder.js" defer></script>
 </head>
 
@@ -1431,7 +1440,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Sentry Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('sentry')">
-                                <span>⚔️ Sentry Configuration</span>
+                                <span><img src="assets/sentry_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Sentry"> Sentry Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-sentry">
@@ -1461,7 +1471,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Silence Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('silence')">
-                                <span>🔇 Silence Configuration</span>
+                                <span><img src="assets/silence_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Silence"> Silence Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-silence">
@@ -1542,7 +1553,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Vex Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('vex')">
-                                <span>👻 Vex Configuration</span>
+                                <span><img src="assets/vex_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Vex"> Vex Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-vex">
@@ -1579,7 +1591,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Ward Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('ward')">
-                                <span>🛡️ Ward Configuration</span>
+                                <span><img src="assets/ward_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Ward"> Ward Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-ward">
@@ -1602,7 +1615,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Wild Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('wild')">
-                                <span>🌿 Wild Configuration</span>
+                                <span><img src="assets/wild_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Wild"> Wild Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-wild">
@@ -1656,7 +1670,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Coast Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('coast')">
-                                <span>🌊 Coast Configuration</span>
+                                <span><img src="assets/coast_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Coast"> Coast Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-coast">
@@ -1697,7 +1712,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Dune Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('dune')">
-                                <span>🏜️ Dune Configuration</span>
+                                <span><img src="assets/dune_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Dune"> Dune Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-dune">
@@ -1726,7 +1742,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Eye Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('eye')">
-                                <span>👁️ Eye Configuration</span>
+                                <span><img src="assets/eye_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Eye"> Eye Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-eye">
@@ -1752,7 +1769,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Host Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('host')">
-                                <span>🧛 Host Configuration</span>
+                                <span><img src="assets/host_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Host"> Host Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-host">
@@ -1775,7 +1793,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Raiser Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('raiser')">
-                                <span>☠️ Raiser Configuration</span>
+                                <span><img src="assets/raiser_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Raiser"> Raiser Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-raiser">
@@ -1798,7 +1817,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Rib Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('rib')">
-                                <span>🦴 Rib Configuration</span>
+                                <span><img src="assets/rib_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Rib"> Rib Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-rib">
@@ -1815,7 +1835,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Snout Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('snout')">
-                                <span>🐷 Snout Configuration</span>
+                                <span><img src="assets/snout_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Snout"> Snout Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-snout">
@@ -1832,7 +1853,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Spire Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('spire')">
-                                <span>⛰️ Spire Configuration</span>
+                                <span><img src="assets/spire_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Spire"> Spire Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-spire">
@@ -1864,7 +1886,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Tide Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('tide')">
-                                <span>🌀 Tide Configuration</span>
+                                <span><img src="assets/tide_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Tide"> Tide Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-tide">
@@ -1896,7 +1919,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Wayfinder Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('wayfinder')">
-                                <span>🧭 Wayfinder Configuration</span>
+                                <span><img src="assets/wayfinder_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Wayfinder"> Wayfinder Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-wayfinder">
@@ -1910,7 +1934,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Flow Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('flow')">
-                                <span>💧 Flow Configuration</span>
+                                <span><img src="assets/flow_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Flow"> Flow Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-flow">
@@ -1933,7 +1958,8 @@ SCULK_CATALYST:1</textarea>
                         <!-- Bolt Accordion -->
                         <div class="accordion-item">
                             <button class="accordion-header" onclick="toggleAccordion('bolt')">
-                                <span>⚡ Bolt Configuration</span>
+                                <span><img src="assets/bolt_armor_trim_smithing_template.png" class="trim-icon"
+                                        alt="Bolt"> Bolt Configuration</span>
                                 <span class="accordion-icon">▼</span>
                             </button>
                             <div class="accordion-content" id="accordion-bolt">

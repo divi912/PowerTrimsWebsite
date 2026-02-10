@@ -822,6 +822,7 @@ input:checked+.slider:before {
 .hero {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: calc(80px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
@@ -1686,7 +1687,8 @@ section.page {
     }
 
     h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        overflow-wrap: break-word;
     }
 
     h2 {
@@ -1743,7 +1745,41 @@ section.page {
     .container {
         padding: 0 var(--spacing-sm);
     }
+
 }
+
+/* Trim Template Icons */
+.trim-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    image-rendering: pixelated;
+}
+
+/* Compact Config Grid to use empty space */
+.accordion-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-sm);
+    padding-bottom: 10px;
+}
+
+/* Headers inside config should span full width */
+.accordion-content h5 {
+    grid-column: 1 / -1;
+    margin-top: var(--spacing-sm);
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+/* Ensure inputs fill their grid cell */
+.config-input-group {
+    margin-bottom: 0;
+    /* Let grid handle gap */
+}
+
 
 /* Recipe Editor Updates */
 .slot-image {
@@ -1880,4 +1916,91 @@ section.page {
     border-left-color: #000;
     border-bottom-color: #AAA;
     border-right-color: #AAA;
+}
+
+/* ============================================================================ 
+   MOBILE NAVIGATION
+   ============================================================================ */
+
+/* Hide Mobile Elements on Desktop by Default */
+.mobile-nav-toggle,
+.mobile-nav-drawer,
+.mobile-nav-overlay {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* Show Toggle Button usually handled by existing media query, 
+       but we ensure it here with base styles if needed */
+    .mobile-nav-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+        font-size: 1.8rem;
+        color: #FFF;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 1001;
+    }
+
+    /* Drawer Styles */
+    .mobile-nav-drawer {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: -280px;
+        /* Hidden off-screen right */
+        width: 280px;
+        height: 100%;
+        background-color: #1A1A1A;
+        border-left: 2px solid #555;
+        z-index: 2000;
+        /* Above everything */
+        transition: right 0.3s ease-in-out;
+        padding: 20px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .mobile-nav-drawer.open {
+        right: 0;
+        /* Slide in */
+    }
+
+    /* Overlay Styles */
+    .mobile-nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(3px);
+        z-index: 1500;
+        /* Below drawer, above content */
+    }
+
+    .mobile-nav-overlay.active {
+        display: block;
+    }
+
+    /* Drawer Content Styling */
+    .mobile-nav-header {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--mc-gold);
+        text-align: center;
+        margin-bottom: 2rem;
+        border-bottom: 2px solid #333;
+        padding-bottom: 1rem;
+    }
+
+    .mobile-link {
+        display: block;
+        padding: 10px;
+        border-radius: 4px;
+        transition: background 0.2s;
+    }
+
+    .mobile-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
 }

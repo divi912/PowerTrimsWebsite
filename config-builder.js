@@ -621,6 +621,19 @@ function clearRecipe(trimName) {
 }
 
 
+
+// Mobile Navigation Toggle
+function toggleMobileNav() {
+  const drawer = document.querySelector('.mobile-nav-drawer');
+  const overlay = document.querySelector('.mobile-nav-overlay');
+  if (drawer && overlay) {
+    drawer.classList.toggle('open');
+    overlay.classList.toggle('active');
+  }
+}
+window.toggleMobileNav = toggleMobileNav;
+
+
 // Initialize config builder on page load
 document.addEventListener('DOMContentLoaded', () => {
   // Generate initial Main Config YAML
@@ -629,10 +642,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Generate initial Rituals YAML
-  updateRitualsPreview();
+  if (typeof updateRitualsPreview === 'function') {
+    updateRitualsPreview();
+  }
 
-  // Initialize Recipe Editors
-  initRecipeEditor('silence');
-  // Future: TRIMS_LIST.forEach(t => initRecipeEditor(t));
+  // Initialize Recipe Editors for ALL trims
+  const trims = [
+    'sentry', 'silence', 'vex', 'ward', 'wild',
+    'coast', 'dune', 'eye', 'host', 'raiser',
+    'rib', 'snout', 'spire', 'tide', 'wayfinder',
+    'flow', 'bolt'
+  ];
+
+  trims.forEach(trim => {
+    // Check if grid exists before init (in case of partial HTML)
+    if (document.getElementById(`crafting-grid-${trim}`)) {
+      initRecipeEditor(trim);
+    }
+  });
 });
+
 
